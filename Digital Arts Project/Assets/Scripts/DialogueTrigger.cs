@@ -6,8 +6,16 @@ public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
 
-    public void TriggerDialogue()
+    //public void TriggerDialogue()
+    //{
+    //    FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+    //}
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        if (other.tag == "Player")
+        {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        }
     }
 }
