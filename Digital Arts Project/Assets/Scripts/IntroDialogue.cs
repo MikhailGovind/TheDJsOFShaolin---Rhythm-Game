@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class IntroDialogue : MonoBehaviour
 {
     public int sentenceNumber;
+    public GameObject btnNextText;
+
+    [Header("Camera")]
+    public CinemachineVirtualCamera virtualCamera;
+    public float targetZoom = 3.5f;  //desired orthographic size for zoom
+    public float zoomDuration = 2f;  //time in seconds for zoom to complete
+    private float initialZoom = 7.5f; //starting zoom size
+    private float elapsedTime = 0f;
 
     [Header("Zay")]
     public Text zayName;
@@ -37,16 +47,24 @@ public class IntroDialogue : MonoBehaviour
 
     public void Start()
     {
-        sentenceNumber = 1;
+        sentenceNumber = 0;
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
         mayaBubble.SetActive(false);
 
         invite.SetActive(false);
+
+        virtualCamera.m_Lens.OrthographicSize = initialZoom;
+        Debug.Log(virtualCamera.m_Lens.OrthographicSize);
     }
 
     public void Update()
     {
+        if (sentenceNumber == 0)
+        {
+            StartCoroutine(cameraZoom());
+        }
+
         zayName.text = "Zay";
         zaySentence.text = zayString;
 
@@ -95,6 +113,10 @@ public class IntroDialogue : MonoBehaviour
 
         if (sentenceNumber == 5)
         {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+
             StartCoroutine(openInvite());
         }
     }
@@ -104,8 +126,30 @@ public class IntroDialogue : MonoBehaviour
         sentenceNumber++;
     }
 
+    public IEnumerator cameraZoom()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Check if the zooming duration has not been completed yet
+        if (elapsedTime < zoomDuration)
+        {
+            // Calculate the fraction of time that has passed
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / zoomDuration;
+
+            // Smoothly interpolate the orthographic size from initial to target value
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(initialZoom, targetZoom, t);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        sentenceNumber = 1;
+    }
+
     public IEnumerator openInvite()
     {
+        btnNextText.SetActive(false);
+
         //play audio
         audioSource.clip = inviteSound;
         audioSource.Play();
