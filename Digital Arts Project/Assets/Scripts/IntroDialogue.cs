@@ -4,11 +4,22 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.InputSystem;
+using UnityEngine.Scripting.APIUpdating;
+using System;
 
 public class IntroDialogue : MonoBehaviour
 {
     public int sentenceNumber;
     public GameObject btnNextText;
+    public GameObject pnlIntroDialogue;
+
+    public InputActionMap inputActionMap;
+
+    public GameObject currentQuest;
+    public Text txtQuest;
+    [TextArea(3, 10)]
+    public string currentQuestString;
 
     [Header("Camera")]
     public CinemachineVirtualCamera virtualCamera;
@@ -17,26 +28,63 @@ public class IntroDialogue : MonoBehaviour
     private float initialZoom = 7.5f; //starting zoom size
     private float elapsedTime = 0f;
 
+    [Header("PlayableCharacter")]
+    public Text pcName;
+    public Text pcSentence1;
+    public Text pcSentence2;
+    public GameObject pcBubble;
+    [TextArea(3, 10)]
+    public string pcString1;
+    [TextArea(3, 10)]
+    public string pcString2;
+
+    [Header("All")]
+    public Text allName;
+    public Text allSentence;
+    public GameObject allBubble;
+    [TextArea(3, 10)]
+    public string allString1;
+
     [Header("Zay")]
     public Text zayName;
     public Text zaySentence;
     public GameObject zayBubble;
     [TextArea(3, 10)]
-    public string zayString;
+    public string zayString1;
+    [TextArea(3, 10)]
+    public string zayString2;
+    [TextArea(3, 10)]
+    public string zayString3;
+    [TextArea(3, 10)]
+    public string zayString4;
+    [TextArea(3, 10)]
+    public string zayString5;
 
     [Header("Ash")]
     public Text ashName;
     public Text ashSentence;
     public GameObject ashBubble;
     [TextArea(3, 10)]
-    public string ashString;
+    public string ashString1;
+    [TextArea(3, 10)]
+    public string ashString2;
+    [TextArea(3, 10)]
+    public string ashString3;
+    [TextArea(3, 10)]
+    public string ashString4;
+    [TextArea(3, 10)]
+    public string ashString5;
+    [TextArea(3, 10)]
+    public string ashString6;
+    [TextArea(3, 10)]
+    public string ashString7;
 
     [Header("Maya")]
     public Text mayaName;
     public Text mayaSentence;
     public GameObject mayaBubble;
     [TextArea(3, 10)]
-    public string mayaString;
+    public string mayaString1;
     [TextArea(3, 10)]
     public string mayaString2;
 
@@ -51,11 +99,17 @@ public class IntroDialogue : MonoBehaviour
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
         mayaBubble.SetActive(false);
+        allBubble.SetActive(false);
+        pcBubble.SetActive(false);
+        btnNextText.SetActive(false);
 
         invite.SetActive(false);
 
         virtualCamera.m_Lens.OrthographicSize = initialZoom;
         Debug.Log(virtualCamera.m_Lens.OrthographicSize);
+
+        inputActionMap.Enable();
+        move
     }
 
     public void Update()
@@ -65,65 +119,208 @@ public class IntroDialogue : MonoBehaviour
             StartCoroutine(cameraZoom());
         }
 
+        pcName.text = "Playable Character";
+
+        allName.text = "All";
+
         zayName.text = "Zay";
-        zaySentence.text = zayString;
 
         ashName.text = "Ash";
-        ashSentence.text = ashString;
 
         mayaName.text = "Maya";
 
-        if (sentenceNumber == 1)
+        if (sentenceNumber == 1) //zay 1
         { 
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            zaySentence.text = zayString1;
         }
 
-        if (sentenceNumber == 2)
+        if (sentenceNumber == 2) //ash 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
             mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString1;
         }
 
-        if (sentenceNumber == 3)
+        if (sentenceNumber == 3) //zay 2
         {
-            zayBubble.SetActive(false);
+            zayBubble.SetActive(true);
             ashBubble.SetActive(false);
-            mayaBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            zaySentence.text = zayString2;
         }
 
-        if (sentenceNumber == 3)
-        {
-            zayBubble.SetActive(false);
-            ashBubble.SetActive(false);
-            mayaBubble.SetActive(true);
-
-            mayaSentence.text = mayaString;
-        }
-        if (sentenceNumber == 4)
-        {
-            zayBubble.SetActive(false);
-            ashBubble.SetActive(false);
-            mayaBubble.SetActive(true);
-
-            mayaSentence.text = mayaString2;
-        }
-
-        if (sentenceNumber == 5)
+        if (sentenceNumber == 4) //all 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
+            allBubble.SetActive(true);
 
-            StartCoroutine(openInvite());
+            allSentence.text = allString1;
+        }
+
+        if (sentenceNumber == 5) //ash 2
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString2;
+        }
+
+        if (sentenceNumber == 6) //zay 3
+        {
+            zayBubble.SetActive(true);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            zaySentence.text = zayString3;
+        }
+
+        if (sentenceNumber == 7) //ash 3
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString3;
+        }
+
+        if (sentenceNumber == 8) //pc opt 1
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            pcBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            btnNextText.SetActive(false);
+
+            pcSentence1.text = pcString1;
+            pcSentence2.text = pcString2;
+        }
+
+        if (sentenceNumber == 9) //ash 4
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            pcBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            btnNextText.SetActive(true);
+
+            ashSentence.text = ashString4;
+        }
+
+        if (sentenceNumber == 10) //ash 5
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            pcBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            btnNextText.SetActive(true);
+
+            ashSentence.text = ashString5;
+        }
+
+        if (sentenceNumber == 11) //maya 1
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(true);
+            allBubble.SetActive(false);
+
+            mayaSentence.text = mayaString1;
+        }
+
+        if (sentenceNumber == 12) //maya 2
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(true);
+            allBubble.SetActive(false);
+
+            mayaSentence.text = mayaString2;
+        }
+
+        if (sentenceNumber == 13) //zay 4
+        {
+            zayBubble.SetActive(true);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            zaySentence.text = zayString4;
+        }
+
+        if (sentenceNumber == 14) //ash 6
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString6;
+        }
+
+        if (sentenceNumber == 15) //zay 5
+        {
+            zayBubble.SetActive(true);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            zaySentence.text = zayString5;
+        }
+
+        if (sentenceNumber == 16) //ash 7
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString7;
+        }
+
+        if (sentenceNumber == 17)
+        {
+            txtQuest.text = "Current Objective: " + currentQuestString;
+            currentQuest.SetActive(true);
+            btnNextText.SetActive(false);
+            pnlIntroDialogue.SetActive(false);
         }
     }
     
     public void NextSentence()
     {
         sentenceNumber++;
+    }
+
+    public void pcOption1()
+    {
+        sentenceNumber = 9;
+    }
+
+    public void pcOption2()
+    {
+        sentenceNumber = 10;
     }
 
     public IEnumerator cameraZoom()
@@ -144,6 +341,7 @@ public class IntroDialogue : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         sentenceNumber = 1;
+        btnNextText.SetActive(true);
     }
 
     public IEnumerator openInvite()
