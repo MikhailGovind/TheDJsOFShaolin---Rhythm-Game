@@ -14,8 +14,10 @@ public class IntroDialogue : MonoBehaviour
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
 
+    [Header("Movement")]
     public InputActionMap inputActionMap;
 
+    [Header("Quest")]
     public GameObject currentQuest;
     public Text txtQuest;
     [TextArea(3, 10)]
@@ -92,6 +94,7 @@ public class IntroDialogue : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip inviteSound;
     public GameObject invite;
+    public bool inviteSoundPlay;
 
     public void Start()
     {
@@ -104,16 +107,19 @@ public class IntroDialogue : MonoBehaviour
         btnNextText.SetActive(false);
 
         invite.SetActive(false);
+        inviteSoundPlay = false;
+
+        currentQuest.SetActive(false);
 
         virtualCamera.m_Lens.OrthographicSize = initialZoom;
         Debug.Log(virtualCamera.m_Lens.OrthographicSize);
 
         inputActionMap.Enable();
-        move
     }
 
     public void Update()
     {
+        #region sentences
         if (sentenceNumber == 0)
         {
             StartCoroutine(cameraZoom());
@@ -259,17 +265,30 @@ public class IntroDialogue : MonoBehaviour
             mayaSentence.text = mayaString2;
         }
 
-        if (sentenceNumber == 13) //zay 4
+        if (sentenceNumber == 13)
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            StartCoroutine(openInvite());
+        }
+
+        if (sentenceNumber == 14) //zay 4
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             allBubble.SetActive(false);
 
+            invite.SetActive(false);
+            btnNextText.SetActive(true);
+
             zaySentence.text = zayString4;
         }
 
-        if (sentenceNumber == 14) //ash 6
+        if (sentenceNumber == 15) //ash 6
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -279,7 +298,7 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString6;
         }
 
-        if (sentenceNumber == 15) //zay 5
+        if (sentenceNumber == 16) //zay 5
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
@@ -289,7 +308,7 @@ public class IntroDialogue : MonoBehaviour
             zaySentence.text = zayString5;
         }
 
-        if (sentenceNumber == 16) //ash 7
+        if (sentenceNumber == 17) //ash 7
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -299,15 +318,16 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString7;
         }
 
-        if (sentenceNumber == 17)
+        if (sentenceNumber == 18)
         {
             txtQuest.text = "Current Objective: " + currentQuestString;
             currentQuest.SetActive(true);
             btnNextText.SetActive(false);
             pnlIntroDialogue.SetActive(false);
         }
+        #endregion  
     }
-    
+
     public void NextSentence()
     {
         sentenceNumber++;
@@ -348,12 +368,19 @@ public class IntroDialogue : MonoBehaviour
     {
         btnNextText.SetActive(false);
 
-        //play audio
-        audioSource.clip = inviteSound;
-        audioSource.Play();
-        Debug.Log("Invite Sound");
+        if (inviteSoundPlay == false)
+        {
+            //play audio
+            audioSource.clip = inviteSound;
+            audioSource.Play();
+            Debug.Log("Invite Sound");
 
-         yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
+
+            inviteSoundPlay = true;
+        }
+
+        yield return new WaitForSeconds(1f);
 
         //show letter
         invite.SetActive(true);
