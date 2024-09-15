@@ -375,7 +375,7 @@ public class IntroDialogue : MonoBehaviour
             audioSource.Play();
             Debug.Log("Invite Sound");
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
 
             inviteSoundPlay = true;
         }
