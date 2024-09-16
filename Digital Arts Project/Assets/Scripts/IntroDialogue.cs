@@ -14,9 +14,6 @@ public class IntroDialogue : MonoBehaviour
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
 
-    [Header("Movement")]
-    public InputActionMap inputActionMap;
-
     [Header("Quest")]
     public GameObject currentQuest;
     public Text txtQuest;
@@ -99,6 +96,7 @@ public class IntroDialogue : MonoBehaviour
     public void Start()
     {
         sentenceNumber = 0;
+
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
         mayaBubble.SetActive(false);
@@ -113,8 +111,6 @@ public class IntroDialogue : MonoBehaviour
 
         virtualCamera.m_Lens.OrthographicSize = initialZoom;
         Debug.Log(virtualCamera.m_Lens.OrthographicSize);
-
-        inputActionMap.Enable();
     }
 
     public void Update()
