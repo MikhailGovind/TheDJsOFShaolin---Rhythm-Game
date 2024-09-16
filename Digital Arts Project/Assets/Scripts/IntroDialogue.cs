@@ -13,6 +13,7 @@ public class IntroDialogue : MonoBehaviour
     public int sentenceNumber;
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
+    public GameObject trgToJamScene;
 
     [Header("Quest")]
     public GameObject currentQuest;
@@ -108,6 +109,7 @@ public class IntroDialogue : MonoBehaviour
         inviteSoundPlay = false;
 
         currentQuest.SetActive(false);
+        trgToJamScene.SetActive(false);
 
         virtualCamera.m_Lens.OrthographicSize = initialZoom;
         Debug.Log(virtualCamera.m_Lens.OrthographicSize);
@@ -320,6 +322,7 @@ public class IntroDialogue : MonoBehaviour
             currentQuest.SetActive(true);
             btnNextText.SetActive(false);
             pnlIntroDialogue.SetActive(false);
+            trgToJamScene.SetActive(true);
         }
         #endregion  
     }
