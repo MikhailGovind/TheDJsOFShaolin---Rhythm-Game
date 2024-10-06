@@ -7,6 +7,7 @@ using Cinemachine;
 using UnityEngine.InputSystem;
 using UnityEngine.Scripting.APIUpdating;
 using System;
+using UnityEngine.UIElements;
 
 public class IntroDialogue : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class IntroDialogue : MonoBehaviour
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
     public GameObject trgToJamScene;
+
+    [Header("Misc")]
+    public UnityEngine.UI.Image pnlDialogue;
 
     [Header("Quest")]
     public GameObject currentQuest;
@@ -57,8 +61,6 @@ public class IntroDialogue : MonoBehaviour
     public string zayString3;
     [TextArea(3, 10)]
     public string zayString4;
-    [TextArea(3, 10)]
-    public string zayString5;
 
     [Header("Ash")]
     public Text ashName;
@@ -87,6 +89,9 @@ public class IntroDialogue : MonoBehaviour
     public string mayaString1;
     [TextArea(3, 10)]
     public string mayaString2;
+
+    public Animator mayaAnimator;
+    public GameObject objMaya;
 
     [Header("Invite")]
     public AudioSource audioSource;
@@ -133,8 +138,20 @@ public class IntroDialogue : MonoBehaviour
 
         mayaName.text = "Maya";
 
-        if (sentenceNumber == 1) //zay 1
-        { 
+        if (sentenceNumber == 1) //ash 1
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            allBubble.SetActive(false);
+
+            ashSentence.text = ashString1;
+
+            StartCoroutine(flashBlue());
+        }
+
+        if (sentenceNumber == 2) //zay 1
+        {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
@@ -143,27 +160,7 @@ public class IntroDialogue : MonoBehaviour
             zaySentence.text = zayString1;
         }
 
-        if (sentenceNumber == 2) //ash 1
-        {
-            zayBubble.SetActive(false);
-            ashBubble.SetActive(true);
-            mayaBubble.SetActive(false);
-            allBubble.SetActive(false);
-
-            ashSentence.text = ashString1;
-        }
-
-        if (sentenceNumber == 3) //zay 2
-        {
-            zayBubble.SetActive(true);
-            ashBubble.SetActive(false);
-            mayaBubble.SetActive(false);
-            allBubble.SetActive(false);
-
-            zaySentence.text = zayString2;
-        }
-
-        if (sentenceNumber == 4) //all 1
+        if (sentenceNumber == 3) //all 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -173,7 +170,7 @@ public class IntroDialogue : MonoBehaviour
             allSentence.text = allString1;
         }
 
-        if (sentenceNumber == 5) //ash 2
+        if (sentenceNumber == 4) //ash 2
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -183,17 +180,17 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString2;
         }
 
-        if (sentenceNumber == 6) //zay 3
+        if (sentenceNumber == 5) //zay 2
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             allBubble.SetActive(false);
 
-            zaySentence.text = zayString3;
+            zaySentence.text = zayString2;
         }
 
-        if (sentenceNumber == 7) //ash 3
+        if (sentenceNumber == 6) //ash 3
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -203,7 +200,7 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString3;
         }
 
-        if (sentenceNumber == 8) //pc opt 1
+        if (sentenceNumber == 7) //pc opt 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -217,7 +214,7 @@ public class IntroDialogue : MonoBehaviour
             pcSentence2.text = pcString2;
         }
 
-        if (sentenceNumber == 9) //ash 4
+        if (sentenceNumber == 8) //ash 4
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -226,24 +223,9 @@ public class IntroDialogue : MonoBehaviour
             allBubble.SetActive(false);
 
             btnNextText.SetActive(true);
-
-            ashSentence.text = ashString4;
         }
 
-        if (sentenceNumber == 10) //ash 5
-        {
-            zayBubble.SetActive(false);
-            ashBubble.SetActive(true);
-            pcBubble.SetActive(false);
-            mayaBubble.SetActive(false);
-            allBubble.SetActive(false);
-
-            btnNextText.SetActive(true);
-
-            ashSentence.text = ashString5;
-        }
-
-        if (sentenceNumber == 11) //maya 1
+        if (sentenceNumber == 9) //maya 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -253,7 +235,7 @@ public class IntroDialogue : MonoBehaviour
             mayaSentence.text = mayaString1;
         }
 
-        if (sentenceNumber == 12) //maya 2
+        if (sentenceNumber == 10) //maya 2
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -263,7 +245,7 @@ public class IntroDialogue : MonoBehaviour
             mayaSentence.text = mayaString2;
         }
 
-        if (sentenceNumber == 13)
+        if (sentenceNumber == 11)
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -273,20 +255,21 @@ public class IntroDialogue : MonoBehaviour
             StartCoroutine(openInvite());
         }
 
-        if (sentenceNumber == 14) //zay 4
+        if (sentenceNumber == 12) //zay 3
         {
+            invite.SetActive(false);
+
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             allBubble.SetActive(false);
 
-            invite.SetActive(false);
             btnNextText.SetActive(true);
 
-            zaySentence.text = zayString4;
+            zaySentence.text = zayString3;
         }
 
-        if (sentenceNumber == 15) //ash 6
+        if (sentenceNumber == 13) //ash 6
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -296,17 +279,17 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString6;
         }
 
-        if (sentenceNumber == 16) //zay 5
+        if (sentenceNumber == 14) //zay 4
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             allBubble.SetActive(false);
 
-            zaySentence.text = zayString5;
+            zaySentence.text = zayString4;
         }
 
-        if (sentenceNumber == 17) //ash 7
+        if (sentenceNumber == 15) //ash 7
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
@@ -316,7 +299,7 @@ public class IntroDialogue : MonoBehaviour
             ashSentence.text = ashString7;
         }
 
-        if (sentenceNumber == 18)
+        if (sentenceNumber == 16)
         {
             txtQuest.text = "Current Objective: " + currentQuestString;
             currentQuest.SetActive(true);
@@ -334,12 +317,18 @@ public class IntroDialogue : MonoBehaviour
 
     public void pcOption1()
     {
-        sentenceNumber = 9;
+        sentenceNumber = 8;
+        ashSentence.text = ashString4;
+
+        mayaAnimator.SetTrigger("maya_walkToGroup");
     }
 
     public void pcOption2()
     {
-        sentenceNumber = 10;
+        sentenceNumber = 8;
+        ashSentence.text = ashString5;
+
+        mayaAnimator.SetTrigger("maya_walkToGroup");
     }
 
     public IEnumerator cameraZoom()
@@ -374,14 +363,29 @@ public class IntroDialogue : MonoBehaviour
             audioSource.Play();
             Debug.Log("Invite Sound");
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.25f);
 
             inviteSoundPlay = true;
         }
+
+        mayaAnimator.SetTrigger("maya_afterInvite");
 
         yield return new WaitForSeconds(1f);
 
         //show letter
         invite.SetActive(true);
+
+        yield return new WaitForSeconds(10f);
+        objMaya.SetActive(false);
+    }
+
+    //time travel glitch effect
+    public IEnumerator flashBlue()
+    {
+        pnlDialogue.color = new Color(0, 0, 1, 0.1f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        pnlDialogue.color = new Color(0, 0, 1, 0f);
     }
 }
