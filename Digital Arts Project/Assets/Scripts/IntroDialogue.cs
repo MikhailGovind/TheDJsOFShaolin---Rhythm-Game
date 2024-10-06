@@ -301,7 +301,7 @@ public class IntroDialogue : MonoBehaviour
 
         if (sentenceNumber == 16)
         {
-            txtQuest.text = "Current Objective: " + currentQuestString;
+            txtQuest.text = currentQuestString;
             currentQuest.SetActive(true);
             btnNextText.SetActive(false);
             pnlIntroDialogue.SetActive(false);
@@ -349,6 +349,9 @@ public class IntroDialogue : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         sentenceNumber = 1;
+
+        yield return new WaitForSeconds(2f);
+
         btnNextText.SetActive(true);
     }
 
