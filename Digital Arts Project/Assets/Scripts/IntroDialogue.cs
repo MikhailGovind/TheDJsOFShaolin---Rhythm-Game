@@ -18,6 +18,8 @@ public class IntroDialogue : MonoBehaviour
 
     [Header("Misc")]
     public UnityEngine.UI.Image pnlDialogue;
+    public GameObject dateImg2024;
+    public GameObject dateImg1973;
 
     [Header("Quest")]
     public GameObject currentQuest;
@@ -116,6 +118,9 @@ public class IntroDialogue : MonoBehaviour
         currentQuest.SetActive(false);
         trgToJamScene.SetActive(false);
 
+        dateImg2024.SetActive(false);
+        dateImg1973.SetActive(false);
+
         virtualCamera.m_Lens.OrthographicSize = initialZoom;
         Debug.Log(virtualCamera.m_Lens.OrthographicSize);
     }
@@ -126,6 +131,8 @@ public class IntroDialogue : MonoBehaviour
         if (sentenceNumber == 0)
         {
             StartCoroutine(cameraZoom());
+            StartCoroutine(Date());
+            StartCoroutine(flashBlue());
         }
 
         pcName.text = "Playable Character";
@@ -146,8 +153,6 @@ public class IntroDialogue : MonoBehaviour
             allBubble.SetActive(false);
 
             ashSentence.text = ashString1;
-
-            StartCoroutine(flashBlue());
         }
 
         if (sentenceNumber == 2) //zay 1
@@ -309,7 +314,7 @@ public class IntroDialogue : MonoBehaviour
         }
         #endregion  
     }
-
+    
     public void NextSentence()
     {
         sentenceNumber++;
@@ -346,13 +351,34 @@ public class IntroDialogue : MonoBehaviour
             virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(initialZoom, targetZoom, t);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         sentenceNumber = 1;
 
-        yield return new WaitForSeconds(2f);
-
         btnNextText.SetActive(true);
+    }
+
+    public IEnumerator Date()
+    {
+        yield return new WaitForSeconds(4f);
+         
+        dateImg2024.SetActive(true);
+
+        yield return new WaitForSeconds(6f);
+
+        dateImg2024.SetActive(false);
+        dateImg1973.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+
+        dateImg2024.SetActive(true);
+        dateImg1973.SetActive(false);
+
+        yield return new WaitForSeconds(1f);
+
+        dateImg2024.SetActive(false);
+        dateImg1973.SetActive(false);
     }
 
     public IEnumerator openInvite()
