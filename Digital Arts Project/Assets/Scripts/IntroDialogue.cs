@@ -11,6 +11,8 @@ using UnityEngine.UIElements;
 
 public class IntroDialogue : MonoBehaviour
 {
+    #region variables
+
     public int sentenceNumber;
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
@@ -100,6 +102,8 @@ public class IntroDialogue : MonoBehaviour
     public AudioClip inviteSound;
     public GameObject invite;
     public bool inviteSoundPlay;
+
+    #endregion
 
     public void Start()
     {

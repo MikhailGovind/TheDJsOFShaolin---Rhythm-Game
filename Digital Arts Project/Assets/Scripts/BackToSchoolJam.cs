@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BackToSchoolJam : MonoBehaviour
 {
+    #region variables
+
     public int sentenceNumber;
     public GameObject btnNextText;
 
@@ -13,7 +15,9 @@ public class BackToSchoolJam : MonoBehaviour
     public GameObject currentQuest;
     public Text txtQuest;
     [TextArea(3, 10)]
-    public string currentQuestString;
+    public string currentQuestString1;
+    [TextArea(3, 10)]
+    public string currentQuestString2;
 
     [Header("PlayableCharacter")]
     public Text pcName;
@@ -113,6 +117,7 @@ public class BackToSchoolJam : MonoBehaviour
     public Text devonName;
     public Text devonSentence;
     public GameObject devonBubble;
+    public Animator devonAnimator;
     [TextArea(3, 10)]
     public string devonString1;
     [TextArea(3, 10)]
@@ -121,6 +126,8 @@ public class BackToSchoolJam : MonoBehaviour
     public string devonString3;
     [TextArea(3, 10)]
     public string devonString4;
+
+    #endregion
 
     public void Start()
     {
@@ -282,6 +289,9 @@ public class BackToSchoolJam : MonoBehaviour
             manBubble.SetActive(false);
             btnNextText.SetActive(false);
             manAnimator.SetTrigger("man_walkAway");
+
+            txtQuest.text = currentQuestString1;
+            currentQuest.SetActive(true);
         }
 
         //pc interacts with maya
@@ -292,9 +302,13 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
+
             btnNextText.SetActive(true);
 
             mayaSentence.text = mayaString1;
+
+            currentQuest.SetActive(false);
         }
 
         if (sentenceNumber == 13) //pc 4
@@ -314,6 +328,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString2;
         }
@@ -335,6 +350,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString3;
         }
@@ -356,6 +372,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString4;
         }
@@ -377,6 +394,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString5;
         }
@@ -387,6 +405,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString6;
         }
@@ -408,13 +427,28 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(true);
             manBubble.SetActive(false);
+            pcBubble.SetActive(false);
 
             mayaSentence.text = mayaString7;
         }
 
+        if (sentenceNumber == 24)
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+
+            btnNextText.SetActive(false);
+
+            txtQuest.text = currentQuestString2;
+            currentQuest.SetActive(true);
+        }
+
         //zay option
 
-        if (sentenceNumber == 24) //zay 3
+        if (sentenceNumber == 25) //zay 3
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
@@ -423,9 +457,13 @@ public class BackToSchoolJam : MonoBehaviour
             pcBubble.SetActive(false);
 
             zaySentence.text = zayString3;
+
+            btnNextText.SetActive(true);
+
+            currentQuest.SetActive(false);
         }
 
-        if (sentenceNumber == 25) //devon 1
+        if (sentenceNumber == 26) //devon 1
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -437,7 +475,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonSentence.text = devonString1;
         }
 
-        if (sentenceNumber == 26) //zay 4
+        if (sentenceNumber == 27) //zay 4
         {
             zayBubble.SetActive(true);
             ashBubble.SetActive(false);
@@ -448,7 +486,7 @@ public class BackToSchoolJam : MonoBehaviour
             zaySentence.text = zayString4;
         }
 
-        if (sentenceNumber == 27) //pc 9
+        if (sentenceNumber == 28) //pc 9
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -460,7 +498,7 @@ public class BackToSchoolJam : MonoBehaviour
             pcSentence.text = pcString9;
         }
 
-        if (sentenceNumber == 28) //devon 2
+        if (sentenceNumber == 29) //devon 2
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -472,7 +510,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonSentence.text = devonString2;
         }
 
-        if (sentenceNumber == 29) //pc 10
+        if (sentenceNumber == 30) //pc 10
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -484,7 +522,7 @@ public class BackToSchoolJam : MonoBehaviour
             pcSentence.text = pcString10;
         }
 
-        if (sentenceNumber == 30) //devon 3
+        if (sentenceNumber == 31) //devon 3
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -496,7 +534,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonSentence.text = devonString3;
         }
 
-        if (sentenceNumber == 31) //pc 11
+        if (sentenceNumber == 32) //pc 11
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -508,7 +546,20 @@ public class BackToSchoolJam : MonoBehaviour
             pcSentence.text = pcString11;
         }
 
-        if (sentenceNumber == 32) //devon 4
+        if (sentenceNumber == 33)
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+            devonBubble.SetActive(false);
+
+            btnNextText.SetActive(false);
+            devonAnimator.SetTrigger("devon_walkToCoke");
+        }
+
+        if (sentenceNumber == 34) //devon 4
         {
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
@@ -520,11 +571,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonSentence.text = devonString4;
         }
 
-
-
         #endregion
-
-
     }
 
     public void NextSentence()
