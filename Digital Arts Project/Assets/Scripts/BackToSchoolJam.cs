@@ -18,6 +18,8 @@ public class BackToSchoolJam : MonoBehaviour
     public string currentQuestString1;
     [TextArea(3, 10)]
     public string currentQuestString2;
+    [TextArea(3, 10)]
+    public string currentQuestString3;
 
     [Header("PlayableCharacter")]
     public Text pcName;
@@ -45,6 +47,12 @@ public class BackToSchoolJam : MonoBehaviour
     public string pcString10;
     [TextArea(3, 10)]
     public string pcString11;
+    [TextArea(3, 10)]
+    public string pcString12;
+    [TextArea(3, 10)]
+    public string pcString13;
+    [TextArea(3, 10)]
+    public string pcString14;
 
     [Header("Zay")]
     public Text zayName;
@@ -127,6 +135,19 @@ public class BackToSchoolJam : MonoBehaviour
     [TextArea(3, 10)]
     public string devonString4;
 
+    [Header("Coke La Rock")]
+    public Text cokeName;
+    public Text cokeSentence;
+    public GameObject cokeBubble;
+    [TextArea(3, 10)]
+    public string cokeString1;
+    [TextArea(3, 10)]
+    public string cokeString2;
+    [TextArea(3, 10)]
+    public string cokeString3;
+    [TextArea(3, 10)]
+    public string cokeString4;
+
     #endregion
 
     public void Start()
@@ -139,6 +160,7 @@ public class BackToSchoolJam : MonoBehaviour
         pcBubble.SetActive(false);
         manBubble.SetActive(false);
         devonBubble.SetActive(false);
+        cokeBubble.SetActive(false);
         btnNextText.SetActive(false);
 
         currentQuest.SetActive(false);
@@ -164,6 +186,8 @@ public class BackToSchoolJam : MonoBehaviour
         manName.text = "Man";
 
         devonName.text = "Devon";
+
+        cokeName.text = "A-1 Coke";
 
         if (sentenceNumber == 1) //zay 1
         {
@@ -283,11 +307,12 @@ public class BackToSchoolJam : MonoBehaviour
 
         if (sentenceNumber == 11)
         {
+            btnNextText.SetActive(false);
+
             zayBubble.SetActive(false);
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             manBubble.SetActive(false);
-            btnNextText.SetActive(false);
             manAnimator.SetTrigger("man_walkAway");
 
             txtQuest.text = currentQuestString1;
@@ -557,6 +582,9 @@ public class BackToSchoolJam : MonoBehaviour
 
             btnNextText.SetActive(false);
             devonAnimator.SetTrigger("devon_walkToCoke");
+
+            currentQuest.SetActive(true);
+            txtQuest.text = currentQuestString3;
         }
 
         if (sentenceNumber == 34) //devon 4
@@ -568,7 +596,104 @@ public class BackToSchoolJam : MonoBehaviour
             pcBubble.SetActive(false);
             devonBubble.SetActive(true);
 
+            btnNextText.SetActive(true);
+
             devonSentence.text = devonString4;
+
+            currentQuest.SetActive(false);
+        }
+        
+        //coke talks to the playable character
+
+        if (sentenceNumber == 35) //coke 1
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(true);
+
+            cokeSentence.text = cokeString1;
+        }
+
+        if (sentenceNumber == 36) //pc 12
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            pcBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            manBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(false);
+
+            pcSentence.text = pcString12;
+        }
+
+        if (sentenceNumber == 37) //coke 2
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(true);
+
+            cokeSentence.text = cokeString2;
+        }
+
+        if (sentenceNumber == 38) //pc 13
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            pcBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            manBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(false);
+
+            pcSentence.text = pcString13;
+        }
+
+        if (sentenceNumber == 39) //coke 3
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(true);
+
+            cokeSentence.text = cokeString3;
+        }
+
+        if (sentenceNumber == 40) //pc 14
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            pcBubble.SetActive(true);
+            mayaBubble.SetActive(false);
+            manBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(false);
+
+            pcSentence.text = pcString14;
+        }
+
+        if (sentenceNumber == 41) //coke 4
+        {
+            zayBubble.SetActive(false);
+            ashBubble.SetActive(false);
+            manBubble.SetActive(false);
+            mayaBubble.SetActive(false);
+            pcBubble.SetActive(false);
+            devonBubble.SetActive(false);
+            cokeBubble.SetActive(true);
+
+            cokeSentence.text = cokeString4;
         }
 
         #endregion
