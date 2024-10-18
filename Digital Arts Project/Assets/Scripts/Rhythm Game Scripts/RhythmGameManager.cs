@@ -25,6 +25,13 @@ public class RhythmGameManager : MonoBehaviour
     public int[] multiplierThresholds;
     public Text txtMultiplier;
 
+    [Header("Results")]
+    public float totalNotes;
+    public float normalNoteHits;
+    public float goodNoteHits;
+    public float perfectNoteHits;
+    public float missedNotes;
+
     void Start()
     {
         instance = this;
@@ -34,6 +41,8 @@ public class RhythmGameManager : MonoBehaviour
         currentScore = 0;
         txtScore.text = "Score: " + currentScore;
         currentMultiplier = 1;
+
+        totalNotes = FindObjectsOfType<NoteObject>().Length;
     }
 
     void Update()
@@ -75,18 +84,24 @@ public class RhythmGameManager : MonoBehaviour
     {
         currentScore += scorePerNote * currentMultiplier;
         noteHit();
+
+        normalNoteHits++;
     }
 
     public void goodHit()
     {
         currentScore += scorePerGoodNote * currentMultiplier;
         noteHit();
+
+        goodNoteHits++;
     }
 
     public void perfectHit()
     {
         currentScore += scorePerPerfectNote * currentMultiplier;
         noteHit();
+
+        perfectNoteHits++;
     }
 
     public void noteMissed()
@@ -97,5 +112,7 @@ public class RhythmGameManager : MonoBehaviour
         multiplierTracker = 0;
 
         txtMultiplier.text = "x" + currentMultiplier;
+
+        missedNotes++;
     }
 }

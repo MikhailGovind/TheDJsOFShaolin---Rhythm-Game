@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51646287dd7d1df44af3bd7c034999a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 80
+  beatTempo: 120
   hasStarted: 0
 --- !u!1 &768454037
 GameObject:
@@ -2718,6 +2718,11 @@ MonoBehaviour:
   multiplierTracker: 0
   multiplierThresholds: 040000000800000010000000
   txtMultiplier: {fileID: 1529751120}
+  totalNotes: 0
+  normalNoteHits: 0
+  goodNoteHits: 0
+  perfectNoteHits: 0
+  missedNotes: 0
 --- !u!4 &1929571702
 Transform:
   m_ObjectHideFlags: 0
