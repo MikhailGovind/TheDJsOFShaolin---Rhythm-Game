@@ -317,6 +317,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 274
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &165383215
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,7 +331,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -441,6 +445,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 274
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &332371687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -451,7 +459,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -565,6 +573,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 273
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &401712541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -575,7 +587,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -689,6 +701,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 275
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &430299410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -699,7 +715,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -790,7 +806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465103661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 838200807}
@@ -908,7 +924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547506381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647774965}
@@ -940,7 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51646287dd7d1df44af3bd7c034999a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 120
+  beatTempo: 80
   hasStarted: 0
 --- !u!1 &768454037
 GameObject:
@@ -1236,6 +1252,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 274
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &888885740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1246,7 +1266,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1439,6 +1459,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 273
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &1065025309
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1449,7 +1473,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1610,7 +1634,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1640,6 +1664,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 276
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!1 &1121006357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1711,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1764,6 +1792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 275
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!1 &1126721791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1843,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 276
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &1126721794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1821,7 +1857,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2195,7 +2231,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2225,6 +2261,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 273
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!1 &1529751118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2438,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2428,6 +2468,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 273
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!1 &1719477971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2519,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 276
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &1719477974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2485,7 +2533,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2663,6 +2711,8 @@ MonoBehaviour:
   beatScroller: {fileID: 547506383}
   currentScore: 0
   scorePerNote: 0
+  scorePerGoodNote: 0
+  scorePerPerfectNote: 0
   txtScore: {fileID: 982163483}
   currentMultiplier: 0
   multiplierTracker: 0
@@ -2729,6 +2779,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 273
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!61 &1982271133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2739,7 +2793,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2996,7 +3050,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3077,6 +3131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBePressed: 0
   keyToPress: 274
+  hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
+  goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
+  perfectHitEffect: {fileID: 4726428899323987093, guid: 4110d634252867d4da3dfee41ad06159, type: 3}
+  missEffect: {fileID: 7469010393982249200, guid: 62704f1f28e40fc47ae9a18a3136be69, type: 3}
 --- !u!1 &2090538467
 GameObject:
   m_ObjectHideFlags: 0

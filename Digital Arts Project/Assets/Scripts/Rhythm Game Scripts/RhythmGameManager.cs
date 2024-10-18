@@ -15,6 +15,8 @@ public class RhythmGameManager : MonoBehaviour
     [Header("Score")]
     public int currentScore;
     public int scorePerNote;
+    public int scorePerGoodNote;
+    public int scorePerPerfectNote;
     public Text txtScore;
 
     [Header("Multiplier")]
@@ -27,6 +29,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         instance = this;
         scorePerNote = 100;
+        scorePerGoodNote = 125;
+        scorePerPerfectNote = 150;
         currentScore = 0;
         txtScore.text = "Score: " + currentScore;
         currentMultiplier = 1;
@@ -50,8 +54,8 @@ public class RhythmGameManager : MonoBehaviour
     {
         Debug.Log("Hit on time");
 
-        //if (currentMultiplier - 1 < multiplierThresholds.Length)
-        //{
+        if (currentMultiplier - 1 < multiplierThresholds.Length)
+        {
             multiplierTracker++;
 
             if (multiplierThresholds[currentMultiplier - 1] <= multiplierTracker)
@@ -59,12 +63,30 @@ public class RhythmGameManager : MonoBehaviour
                 multiplierTracker = 0;
                 currentMultiplier++;
             }
-        //}
+        }
 
         txtMultiplier.text = "x" + currentMultiplier;
 
-        currentScore += scorePerNote * currentMultiplier;
+        //currentScore += scorePerNote * currentMultiplier;
         txtScore.text = "Score: " + currentScore;
+    }
+
+    public void normalHit()
+    {
+        currentScore += scorePerNote * currentMultiplier;
+        noteHit();
+    }
+
+    public void goodHit()
+    {
+        currentScore += scorePerGoodNote * currentMultiplier;
+        noteHit();
+    }
+
+    public void perfectHit()
+    {
+        currentScore += scorePerPerfectNote * currentMultiplier;
+        noteHit();
     }
 
     public void noteMissed()
