@@ -17,9 +17,6 @@ public class NoteObject : MonoBehaviour
             if (canBePressed)
             {
                 gameObject.SetActive(false);
-                //Destroy(this.gameObject);
-
-                //RhythmGameManager.instance.noteHit();
 
                 if (Mathf.Abs(transform.position.x) > 0.25)
                 {

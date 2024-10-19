@@ -32,6 +32,14 @@ public class RhythmGameManager : MonoBehaviour
     public float perfectNoteHits;
     public float missedNotes;
 
+    [Header("Crossfader")]
+    public Slider sldrCrossfader;
+    public KeyCode leftCrossFaderKey;
+    public KeyCode rightCrossFaderKey;
+
+    public Slider sldrCrossfaderGuide;
+    public Image imgCrossfaderHandle;
+
     void Start()
     {
         instance = this;
@@ -43,6 +51,9 @@ public class RhythmGameManager : MonoBehaviour
         currentMultiplier = 1;
 
         totalNotes = FindObjectsOfType<NoteObject>().Length;
+
+        sldrCrossfader.value = 0.1f;
+        sldrCrossfaderGuide.value = 0.5f;
     }
 
     void Update()
@@ -52,10 +63,30 @@ public class RhythmGameManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 startPlaying = true;
-                beatScroller.hasStarted = true; 
+                beatScroller.hasStarted = true;
 
                 music.Play();
             }
+        }
+
+        if (Input.GetKeyDown(leftCrossFaderKey))
+        {
+            sldrCrossfader.value = sldrCrossfader.value - 0.1f;
+        }
+
+
+        if (Input.GetKeyDown(rightCrossFaderKey))
+        {
+            sldrCrossfader.value = sldrCrossfader.value + 0.1f;
+        }
+
+        if (sldrCrossfader.value == sldrCrossfaderGuide.value)
+        {
+            imgCrossfaderHandle.color = new Color (39, 106, 63, 255);
+        }
+        else
+        {
+            imgCrossfaderHandle.color = new Vector4(200, 17, 0, 255);
         }
     }
 

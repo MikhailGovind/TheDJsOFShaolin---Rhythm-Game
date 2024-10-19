@@ -8,7 +8,8 @@ public class ButtonController : MonoBehaviour
     public Sprite imgDefault;
     public Sprite imgPressed;
 
-    public KeyCode buttonKeyCode;
+    public KeyCode leftButtonKeyCode;
+    public KeyCode rightButtonKeyCode;
 
     void Start()
     {
@@ -17,12 +18,12 @@ public class ButtonController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(buttonKeyCode))
+        if (Input.GetKeyDown(leftButtonKeyCode) || Input.GetKeyDown(rightButtonKeyCode))
         {
             spriteRenderer.sprite = imgPressed;
         }
 
-        if (Input.GetKeyUp(buttonKeyCode))
+        if (Input.GetKeyUp(leftButtonKeyCode) || Input.GetKeyUp(rightButtonKeyCode))
         {
             spriteRenderer.sprite = imgDefault;
         }
