@@ -9,6 +9,7 @@ public class RhythmGameManager : MonoBehaviour
     public AudioSource music;
     public bool startPlaying;
     public BeatScroller beatScroller;
+    public KeyCode scratchKeyCode;
 
     public static RhythmGameManager instance;
 
@@ -40,9 +41,17 @@ public class RhythmGameManager : MonoBehaviour
     public Slider sldrCrossfaderGuide;
     public Image imgCrossfaderHandle;
 
+    public int currentCrossfaderMultiplier;
+    public float crossfaderMultiplierTracker;
+    public int[] crossfaderMultiplierThresholds;
+    public Text txtCrossfaderMultiplier;
+
     void Start()
     {
         instance = this;
+
+        music.pitch = 1;
+
         scorePerNote = 100;
         scorePerGoodNote = 125;
         scorePerPerfectNote = 150;
@@ -54,10 +63,14 @@ public class RhythmGameManager : MonoBehaviour
 
         sldrCrossfader.value = 0.1f;
         sldrCrossfaderGuide.value = 0.5f;
+
+        currentCrossfaderMultiplier = 1;
     }
 
     void Update()
     {
+        #region Start music
+
         if (!startPlaying)
         {
             if (Input.anyKeyDown)
@@ -68,6 +81,10 @@ public class RhythmGameManager : MonoBehaviour
                 music.Play();
             }
         }
+
+        #endregion
+
+        #region Crossfader
 
         if (Input.GetKeyDown(leftCrossFaderKey))
         {
@@ -82,12 +99,47 @@ public class RhythmGameManager : MonoBehaviour
 
         if (sldrCrossfader.value == sldrCrossfaderGuide.value)
         {
-            imgCrossfaderHandle.color = new Color (39, 106, 63, 255);
+            if (currentCrossfaderMultiplier - 1 < crossfaderMultiplierThresholds.Length)
+            {
+                crossfaderMultiplierTracker += Time.deltaTime;
+
+                if (crossfaderMultiplierThresholds[currentCrossfaderMultiplier - 1] <= crossfaderMultiplierTracker)
+                {
+                    crossfaderMultiplierTracker = 0;
+                    currentCrossfaderMultiplier++;
+                }
+            }
+
+            txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
+
+            imgCrossfaderHandle.color = new Color(39, 106, 63, 255);
         }
         else
         {
+
+            currentCrossfaderMultiplier = 1;
+            crossfaderMultiplierTracker = 0;
+
+            txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
+
             imgCrossfaderHandle.color = new Vector4(200, 17, 0, 255);
         }
+
+        #endregion
+
+        #region Scratch
+
+        if (Input.GetKeyDown(scratchKeyCode))
+        {
+            music.pitch = -1;
+        }
+
+        if (Input.GetKeyUp(scratchKeyCode))
+        {
+            music.pitch = 1;
+        }
+
+        #endregion
     }
 
     public void noteHit()
@@ -113,7 +165,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void normalHit()
     {
-        currentScore += scorePerNote * currentMultiplier;
+        currentScore += scorePerNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         normalNoteHits++;
@@ -121,7 +173,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void goodHit()
     {
-        currentScore += scorePerGoodNote * currentMultiplier;
+        currentScore += scorePerGoodNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         goodNoteHits++;
@@ -129,7 +181,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void perfectHit()
     {
-        currentScore += scorePerPerfectNote * currentMultiplier;
+        currentScore += scorePerPerfectNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         perfectNoteHits++;
