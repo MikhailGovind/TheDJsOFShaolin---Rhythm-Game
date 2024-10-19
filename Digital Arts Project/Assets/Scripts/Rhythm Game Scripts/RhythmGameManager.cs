@@ -157,6 +157,8 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
+        CameraShake.Shake(duration:0.1f, strength:0.1f);
+
         txtMultiplier.text = "x" + currentMultiplier;
 
         //currentScore += scorePerNote * currentMultiplier;
