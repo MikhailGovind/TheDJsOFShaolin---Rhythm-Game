@@ -46,6 +46,8 @@ public class RhythmGameManager : MonoBehaviour
     public int[] crossfaderMultiplierThresholds;
     public Text txtCrossfaderMultiplier;
 
+    public float outOfZone;
+
     void Start()
     {
         instance = this;
@@ -99,6 +101,8 @@ public class RhythmGameManager : MonoBehaviour
 
         if (sldrCrossfader.value == sldrCrossfaderGuide.value)
         {
+            outOfZone = 0f; 
+
             if (currentCrossfaderMultiplier - 1 < crossfaderMultiplierThresholds.Length)
             {
                 crossfaderMultiplierTracker += Time.deltaTime;
@@ -116,9 +120,14 @@ public class RhythmGameManager : MonoBehaviour
         }
         else
         {
+            outOfZone += Time.deltaTime;
 
-            currentCrossfaderMultiplier = 1;
-            crossfaderMultiplierTracker = 0;
+            if (outOfZone >= 2f)
+            {
+                outOfZone = 0f;
+                currentCrossfaderMultiplier = 1;
+                crossfaderMultiplierTracker = 0;
+            }
 
             txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
 
