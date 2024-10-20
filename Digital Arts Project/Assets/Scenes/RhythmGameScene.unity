@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 5436496}
   - component: {fileID: 5436495}
   - component: {fileID: 5436494}
+  - component: {fileID: 5436497}
   m_Layer: 0
   m_Name: left_midBeat
   m_TagString: Untagged
@@ -169,6 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 1
+  rightBeat: 0
   keyToPress: 100
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -240,8 +243,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.24720542, g: 0.6037736, b: 0.37202993, a: 1}
+  m_Sprite: {fileID: 4142706388505993879, guid: 27a49070d3f58bf4e89dbb773949ede9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -251,6 +254,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5436497
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436492}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 620c477e1cf7b03489b5ddeb5f9348a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &27304365
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 274
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -963,6 +987,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 274
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -1091,6 +1117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 273
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -1296,6 +1324,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 275
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -1424,6 +1454,7 @@ GameObject:
   - component: {fileID: 480320671}
   - component: {fileID: 480320670}
   - component: {fileID: 480320669}
+  - component: {fileID: 480320672}
   m_Layer: 0
   m_Name: left_highBeat
   m_TagString: Untagged
@@ -1458,6 +1489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 1
+  rightBeat: 0
   keyToPress: 101
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -1529,8 +1562,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.24720542, g: 0.6037736, b: 0.37202993, a: 1}
+  m_Sprite: {fileID: 4142706388505993879, guid: 27a49070d3f58bf4e89dbb773949ede9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1540,6 +1573,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &480320672
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480320667}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 620c477e1cf7b03489b5ddeb5f9348a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &486778229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1766,7 @@ GameObject:
   - component: {fileID: 572073928}
   - component: {fileID: 572073927}
   - component: {fileID: 572073926}
+  - component: {fileID: 572073929}
   m_Layer: 0
   m_Name: right_highBeat
   m_TagString: Untagged
@@ -1748,6 +1801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 1
   keyToPress: 105
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -1819,8 +1874,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.7924528, g: 0, b: 0.68316156, a: 1}
+  m_Sprite: {fileID: 4311472174293950699, guid: ef9b6a1175247fc4dbf5536997bb9474, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1830,6 +1885,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &572073929
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572073924}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b74112b324f4843b90f89e99a8282d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &626758829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +2025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 32
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -2328,6 +2404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 274
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -2646,6 +2724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 273
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -2851,6 +2931,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 276
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -2979,6 +3061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 275
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -3030,6 +3114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 276
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -3485,6 +3571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 273
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -3502,6 +3590,7 @@ GameObject:
   - component: {fileID: 1373625116}
   - component: {fileID: 1373625115}
   - component: {fileID: 1373625114}
+  - component: {fileID: 1373625117}
   m_Layer: 0
   m_Name: left_lowBeat
   m_TagString: Untagged
@@ -3536,6 +3625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 1
+  rightBeat: 0
   keyToPress: 99
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -3607,8 +3698,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.24720542, g: 0.6037736, b: 0.37202993, a: 1}
+  m_Sprite: {fileID: 4142706388505993879, guid: 27a49070d3f58bf4e89dbb773949ede9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3618,6 +3709,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1373625117
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373625112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 620c477e1cf7b03489b5ddeb5f9348a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1447880388
 GameObject:
   m_ObjectHideFlags: 0
@@ -3899,6 +4009,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 273
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -3950,6 +4062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 276
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -4080,6 +4194,7 @@ GameObject:
   - component: {fileID: 1747460791}
   - component: {fileID: 1747460790}
   - component: {fileID: 1747460789}
+  - component: {fileID: 1747460792}
   m_Layer: 0
   m_Name: right_lowBeat
   m_TagString: Untagged
@@ -4114,6 +4229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 1
   keyToPress: 109
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -4185,8 +4302,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.7924528, g: 0, b: 0.68316156, a: 1}
+  m_Sprite: {fileID: 4311472174293950699, guid: ef9b6a1175247fc4dbf5536997bb9474, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4196,6 +4313,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1747460792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747460787}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b74112b324f4843b90f89e99a8282d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1828649399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,6 +4512,7 @@ GameObject:
   - component: {fileID: 1920191277}
   - component: {fileID: 1920191276}
   - component: {fileID: 1920191275}
+  - component: {fileID: 1920191278}
   m_Layer: 0
   m_Name: right_midBeat
   m_TagString: Untagged
@@ -4410,6 +4547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 1
   keyToPress: 107
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -4481,8 +4620,8 @@ SpriteRenderer:
   m_SortingLayerID: 1728821195
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.7924528, g: 0, b: 0.68316156, a: 1}
+  m_Sprite: {fileID: 4311472174293950699, guid: ef9b6a1175247fc4dbf5536997bb9474, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4492,6 +4631,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1920191278
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920191273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b74112b324f4843b90f89e99a8282d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1929571700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4548,6 +4706,7 @@ MonoBehaviour:
   crossfaderMultiplierTracker: 0
   crossfaderMultiplierThresholds: 0a000000140000001e0000003c000000
   txtCrossfaderMultiplier: {fileID: 1447880390}
+  outOfZone: 0
 --- !u!4 &1929571702
 Transform:
   m_ObjectHideFlags: 0
@@ -4608,6 +4767,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 273
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}
@@ -4961,6 +5122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
+  leftBeat: 0
+  rightBeat: 0
   keyToPress: 274
   hitEffect: {fileID: 1032888237667451481, guid: 3f925cdd9b48d6644a4be9e87f4d49e6, type: 3}
   goodHitEffect: {fileID: 8724649135528950970, guid: 567f337a8864f2841977514075276a27, type: 3}

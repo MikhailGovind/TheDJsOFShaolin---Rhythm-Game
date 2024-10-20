@@ -6,9 +6,17 @@ using UnityEngine;
 public class NoteObject : MonoBehaviour
 {
     public bool canBePressed;
+    public bool leftBeat;
+    public bool rightBeat;
     public KeyCode keyToPress;
+    Animator animator;
 
     public GameObject hitEffect, goodHitEffect, perfectHitEffect, missEffect;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -16,7 +24,7 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                gameObject.SetActive(false);
+                StartCoroutine(noteHit());
 
                 if (Mathf.Abs(transform.position.x) > 0.25)
                 {
@@ -65,5 +73,22 @@ public class NoteObject : MonoBehaviour
             RhythmGameManager.instance.noteMissed();
             Instantiate(missEffect, transform.position, missEffect.transform.rotation);
         }
+    }
+
+    public IEnumerator noteHit()
+    {
+        if (leftBeat)
+        {
+            animator.SetTrigger("left_onHit");
+        }
+        else if(rightBeat)
+        {
+            animator.SetTrigger("right_onHit");
+
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        gameObject.SetActive(false);
     }
 }
