@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     Vector2 movementInput;
     Rigidbody2D rb;
-    //Animator animator;
+    Animator animator;
     SpriteRenderer spriteRenderer;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -43,11 +43,14 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                //animator.SetBool("isWalking", success);
+                if (moveSpeed > 0)
+                {
+                    animator.SetBool("player_isWalking", true);
+                }
             }
             else
             {
-                //animator.SetBool("isWalking", false);
+                animator.SetBool("player_isWalking", false);
             }
 
             //set direction of sprite to movement direction 
@@ -59,7 +62,6 @@ public class Player : MonoBehaviour
             else if (movementInput.x > 0) //Right?
             {
                 spriteRenderer.flipX = false;
-                // swordAttack.leftHB();
             }
         }
     }

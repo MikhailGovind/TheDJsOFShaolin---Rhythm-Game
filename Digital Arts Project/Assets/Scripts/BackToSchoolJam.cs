@@ -8,8 +8,10 @@ public class BackToSchoolJam : MonoBehaviour
 {
     #region variables
 
+    [Header("Overall")]
     public int sentenceNumber;
     public GameObject btnNextText;
+    public Player player;
 
     [Header("Quest")]
     public GameObject currentQuest;
@@ -153,6 +155,7 @@ public class BackToSchoolJam : MonoBehaviour
     public void Start()
     {
         sentenceNumber = 0;
+        player.moveSpeed = 0f;
 
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
@@ -317,6 +320,8 @@ public class BackToSchoolJam : MonoBehaviour
 
             txtQuest.text = currentQuestString1;
             currentQuest.SetActive(true);
+
+            player.moveSpeed = 5f;
         }
 
         //pc interacts with maya
@@ -334,6 +339,8 @@ public class BackToSchoolJam : MonoBehaviour
             mayaSentence.text = mayaString1;
 
             currentQuest.SetActive(false);
+
+            player.moveSpeed = 0f;
         }
 
         if (sentenceNumber == 13) //pc 4
@@ -469,6 +476,8 @@ public class BackToSchoolJam : MonoBehaviour
 
             txtQuest.text = currentQuestString2;
             currentQuest.SetActive(true);
+
+            player.moveSpeed = 5f;
         }
 
         //zay option
@@ -486,6 +495,8 @@ public class BackToSchoolJam : MonoBehaviour
             btnNextText.SetActive(true);
 
             currentQuest.SetActive(false);
+
+            player.moveSpeed = 0f;
         }
 
         if (sentenceNumber == 26) //devon 1
@@ -585,6 +596,8 @@ public class BackToSchoolJam : MonoBehaviour
 
             currentQuest.SetActive(true);
             txtQuest.text = currentQuestString3;
+
+            player.moveSpeed = 5f;
         }
 
         if (sentenceNumber == 34) //devon 4
@@ -601,6 +614,8 @@ public class BackToSchoolJam : MonoBehaviour
             devonSentence.text = devonString4;
 
             currentQuest.SetActive(false);
+
+            player.moveSpeed = 0f;
         }
         
         //coke talks to the playable character

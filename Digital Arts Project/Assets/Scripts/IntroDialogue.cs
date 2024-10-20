@@ -13,12 +13,14 @@ public class IntroDialogue : MonoBehaviour
 {
     #region variables
 
+    [Header("Overall")]
     public int sentenceNumber;
     public GameObject btnNextText;
     public GameObject pnlIntroDialogue;
     public GameObject trgToJamScene;
+    public Player player;
 
-    [Header("Misc")]
+    [Header("Misc UI")]
     public UnityEngine.UI.Image pnlDialogue;
     public GameObject dateImg2024;
     public GameObject dateImg1973;
@@ -108,6 +110,7 @@ public class IntroDialogue : MonoBehaviour
     public void Start()
     {
         sentenceNumber = 0;
+        player.moveSpeed = 0f;
 
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
@@ -315,6 +318,8 @@ public class IntroDialogue : MonoBehaviour
             btnNextText.SetActive(false);
             pnlIntroDialogue.SetActive(false);
             trgToJamScene.SetActive(true);
+
+            player.moveSpeed = 5f;
         }
         #endregion  
     }
