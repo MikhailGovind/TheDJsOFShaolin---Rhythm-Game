@@ -8,7 +8,8 @@ public class RhythmGameManager : MonoBehaviour
     [Header("Misc")]
     public AudioSource music;
     public bool startPlaying;
-    public BeatScroller beatScroller;
+    public BeatScroller leftBeatScroller;
+    public BeatScroller rightBeatScroller;
     public KeyCode scratchKeyCode;
 
     public static RhythmGameManager instance;
@@ -20,11 +21,17 @@ public class RhythmGameManager : MonoBehaviour
     public int scorePerPerfectNote;
     public Text txtScore;
 
+    public int backgroundScore;
+
     [Header("Multiplier")]
     public int currentMultiplier;
     public int multiplierTracker;
     public int[] multiplierThresholds;
     public Text txtMultiplier;
+
+    public GameObject multiplierUpEffect, multiplierDownEffect;
+
+    public bool multiplierEnum;
 
     [Header("Results")]
     public float totalNotes;
@@ -39,7 +46,14 @@ public class RhythmGameManager : MonoBehaviour
     public KeyCode rightCrossFaderKey;
 
     public Slider sldrCrossfaderGuide;
+    public float crossfaderValue;
+    public float crossfaderGuideValue;
+
     public Image imgCrossfaderHandle;
+    public Sprite spriteCrossfaderHandleCorrect;
+    public Sprite spriteCrossfaderHandle;
+
+    public Image imgCrossfaderGuide;
 
     public int currentCrossfaderMultiplier;
     public float crossfaderMultiplierTracker;
@@ -47,6 +61,7 @@ public class RhythmGameManager : MonoBehaviour
     public Text txtCrossfaderMultiplier;
 
     public float outOfZone;
+    public bool crossfaderEnum;
 
     void Start()
     {
@@ -58,8 +73,11 @@ public class RhythmGameManager : MonoBehaviour
         scorePerGoodNote = 125;
         scorePerPerfectNote = 150;
         currentScore = 0;
-        txtScore.text = "Score: " + currentScore;
+        backgroundScore = 0;
+        txtScore.text = currentScore.ToString();
+
         currentMultiplier = 1;
+        multiplierEnum = true;
 
         totalNotes = FindObjectsOfType<NoteObject>().Length;
 
@@ -67,6 +85,8 @@ public class RhythmGameManager : MonoBehaviour
         sldrCrossfaderGuide.value = 5f;
 
         currentCrossfaderMultiplier = 1;
+
+        crossfaderEnum = true;
     }
 
     void Update()
@@ -78,9 +98,23 @@ public class RhythmGameManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 startPlaying = true;
-                beatScroller.hasStarted = true;
+                leftBeatScroller.hasStarted = true;
+                rightBeatScroller.hasStarted = true;
 
                 music.Play();
+            }
+        }
+
+        #endregion
+
+        #region Score
+        
+        if (currentScore >= 100)
+        {
+            if (backgroundScore >= 1000)
+            {
+                backgroundScore = 0;
+                StartCoroutine(scoreTextUp());
             }
         }
 
@@ -100,12 +134,17 @@ public class RhythmGameManager : MonoBehaviour
                 {
                     crossfaderMultiplierTracker = 0;
                     currentCrossfaderMultiplier++;
+
+                    StartCoroutine(crossfaderTextUp());
                 }
             }
 
             txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
 
-            imgCrossfaderHandle.color = new Color(39, 106, 63, 255);
+            imgCrossfaderHandle.sprite = spriteCrossfaderHandleCorrect;
+            imgCrossfaderGuide.color = Color.cyan;
+
+            crossfaderEnum = false;
         }
         else
         {
@@ -116,11 +155,17 @@ public class RhythmGameManager : MonoBehaviour
                 outOfZone = 0f;
                 currentCrossfaderMultiplier = 1;
                 crossfaderMultiplierTracker = 0;
+
+                if (!crossfaderEnum)
+                {
+                    StartCoroutine(crossfaderTextDown());
+                }
             }
 
             txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
+            imgCrossfaderHandle.sprite = spriteCrossfaderHandle;
 
-            imgCrossfaderHandle.color = new Vector4(200, 17, 0, 255);
+            imgCrossfaderGuide.color = Color.grey;
         }
 
         if (Input.GetKeyDown(leftCrossFaderKey))
@@ -138,6 +183,9 @@ public class RhythmGameManager : MonoBehaviour
         {
             sldrCrossfader.value = 10f;
         }
+
+        crossfaderValue = sldrCrossfader.value;
+        crossfaderGuideValue = sldrCrossfaderGuide.value;
 
         #endregion
 
@@ -168,6 +216,10 @@ public class RhythmGameManager : MonoBehaviour
             {
                 multiplierTracker = 0;
                 currentMultiplier++;
+
+                multiplierEnum = false;
+
+                StartCoroutine(multiplierTextUp());
             }
         }
 
@@ -176,12 +228,88 @@ public class RhythmGameManager : MonoBehaviour
         txtMultiplier.text = "x" + currentMultiplier;
 
         //currentScore += scorePerNote * currentMultiplier;
-        txtScore.text = "Score: " + currentScore;
+        txtScore.text = currentScore.ToString();
+    }
+
+    public IEnumerator scoreTextUp()
+    {
+        CameraShake.Shake(duration: 0.2f, strength: 0.2f);
+
+        txtScore.fontSize = 200;
+        txtScore.color = Color.cyan;
+
+        Instantiate(multiplierUpEffect, txtScore.transform.position, txtScore.transform.rotation);
+
+        yield return new WaitForSeconds(0.5f);
+
+        txtScore.fontSize = 150;
+        txtScore.color = Color.white;
+    }
+
+    public IEnumerator multiplierTextUp()
+    {
+        CameraShake.Shake(duration: 0.2f, strength: 0.2f);
+
+        txtMultiplier.fontSize = 200;
+        txtMultiplier.color = Color.cyan;
+
+        Instantiate(multiplierUpEffect, txtMultiplier.transform.position, txtMultiplier.transform.rotation);
+
+        yield return new WaitForSeconds(0.5f);
+
+        txtMultiplier.fontSize = 150;
+        txtMultiplier.color = Color.white;
+    }
+
+    public IEnumerator multiplierTextDown()
+    {
+        CameraShake.Shake(duration: 0.3f, strength: 0.3f);
+
+        txtMultiplier.fontSize = 200;
+        txtMultiplier.color = Color.red;
+        Instantiate(multiplierDownEffect, txtMultiplier.transform.position, txtMultiplier.transform.rotation);
+
+        yield return new WaitForSeconds(0.5f);
+
+        txtMultiplier.fontSize = 150;
+        txtMultiplier.color = Color.white;
+    }
+
+    public IEnumerator crossfaderTextUp()
+    {
+        CameraShake.Shake(duration: 0.2f, strength: 0.2f);
+
+        txtCrossfaderMultiplier.fontSize = 175;
+        txtCrossfaderMultiplier.color = Color.cyan;
+
+        Instantiate(multiplierUpEffect, txtCrossfaderMultiplier.transform.position, txtCrossfaderMultiplier.transform.rotation);
+
+        yield return new WaitForSeconds(0.5f);
+
+        txtCrossfaderMultiplier.fontSize = 125;
+        txtCrossfaderMultiplier.color = Color.white;
+    }
+
+    public IEnumerator crossfaderTextDown()
+    {
+        CameraShake.Shake(duration: 0.3f, strength: 0.3f);
+
+        txtCrossfaderMultiplier.fontSize = 175;
+        txtCrossfaderMultiplier.color = Color.red;
+        Instantiate(multiplierDownEffect, txtCrossfaderMultiplier.transform.position, txtCrossfaderMultiplier.transform.rotation);
+
+        yield return new WaitForSeconds(0.5f);
+
+        txtCrossfaderMultiplier.fontSize = 125;
+        txtCrossfaderMultiplier.color = Color.white;
+
+        crossfaderEnum = true;
     }
 
     public void normalHit()
     {
         currentScore += scorePerNote * currentMultiplier * currentCrossfaderMultiplier;
+        backgroundScore += scorePerNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         normalNoteHits++;
@@ -190,6 +318,7 @@ public class RhythmGameManager : MonoBehaviour
     public void goodHit()
     {
         currentScore += scorePerGoodNote * currentMultiplier * currentCrossfaderMultiplier;
+        backgroundScore += scorePerGoodNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         goodNoteHits++;
@@ -198,6 +327,7 @@ public class RhythmGameManager : MonoBehaviour
     public void perfectHit()
     {
         currentScore += scorePerPerfectNote * currentMultiplier * currentCrossfaderMultiplier;
+        backgroundScore += scorePerPerfectNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
         perfectNoteHits++;
@@ -211,6 +341,13 @@ public class RhythmGameManager : MonoBehaviour
         multiplierTracker = 0;
 
         txtMultiplier.text = "x" + currentMultiplier;
+
+        if (!multiplierEnum)
+        {
+            StartCoroutine(multiplierTextDown());
+
+            multiplierEnum = true;
+        }
 
         missedNotes++;
     }

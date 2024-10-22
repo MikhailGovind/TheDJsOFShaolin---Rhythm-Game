@@ -23,13 +23,13 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyDown(leftButtonKeyCode) || Input.GetKeyDown(rightButtonKeyCode))
         {
             animator.SetTrigger("beatButton_onPress");
-            objKnob.transform.eulerAngles = new Vector3(objKnob.transform.eulerAngles.x, objKnob.transform.eulerAngles.y, objKnob.transform.eulerAngles.z - 90);
+            objKnob.transform.eulerAngles = new Vector3(objKnob.transform.eulerAngles.x, objKnob.transform.eulerAngles.y, -90);
         }
 
         if (Input.GetKeyUp(leftButtonKeyCode) || Input.GetKeyUp(rightButtonKeyCode))
         {
             animator.SetTrigger("beatButton_offPress");
-            objKnob.transform.eulerAngles = new Vector3(objKnob.transform.eulerAngles.x, objKnob.transform.eulerAngles.y, objKnob.transform.eulerAngles.z + 90);
+            objKnob.transform.eulerAngles = new Vector3(objKnob.transform.eulerAngles.x, objKnob.transform.eulerAngles.y, 0);
         }
     }
 }
