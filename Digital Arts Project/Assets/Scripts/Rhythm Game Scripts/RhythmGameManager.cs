@@ -63,8 +63,8 @@ public class RhythmGameManager : MonoBehaviour
 
         totalNotes = FindObjectsOfType<NoteObject>().Length;
 
-        sldrCrossfader.value = 0.1f;
-        sldrCrossfaderGuide.value = 0.5f;
+        sldrCrossfader.value = 1f;
+        sldrCrossfaderGuide.value = 5f;
 
         currentCrossfaderMultiplier = 1;
     }
@@ -87,17 +87,6 @@ public class RhythmGameManager : MonoBehaviour
         #endregion
 
         #region Crossfader
-
-        if (Input.GetKeyDown(leftCrossFaderKey))
-        {
-            sldrCrossfader.value = sldrCrossfader.value - 0.1f;
-        }
-
-
-        if (Input.GetKeyDown(rightCrossFaderKey))
-        {
-            sldrCrossfader.value = sldrCrossfader.value + 0.1f;
-        }
 
         if (sldrCrossfader.value == sldrCrossfaderGuide.value)
         {
@@ -132,6 +121,22 @@ public class RhythmGameManager : MonoBehaviour
             txtCrossfaderMultiplier.text = "x" + currentCrossfaderMultiplier;
 
             imgCrossfaderHandle.color = new Vector4(200, 17, 0, 255);
+        }
+
+        if (Input.GetKeyDown(leftCrossFaderKey))
+        {
+            sldrCrossfader.value = sldrCrossfader.value - 1f;
+        }
+
+
+        if (Input.GetKeyDown(rightCrossFaderKey))
+        {
+            sldrCrossfader.value = sldrCrossfader.value + 1f;
+        }
+
+        if (sldrCrossfader.value >= 10f)
+        {
+            sldrCrossfader.value = 10f;
         }
 
         #endregion

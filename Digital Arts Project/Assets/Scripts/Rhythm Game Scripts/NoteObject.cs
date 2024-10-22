@@ -70,6 +70,7 @@ public class NoteObject : MonoBehaviour
         {
             canBePressed = false;
 
+            gameObject.SetActive(false);
             RhythmGameManager.instance.noteMissed();
             Instantiate(missEffect, transform.position, missEffect.transform.rotation);
         }

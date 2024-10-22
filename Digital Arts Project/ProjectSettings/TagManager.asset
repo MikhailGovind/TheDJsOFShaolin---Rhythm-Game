@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Arrows
+  - name: Beats
     uniqueID: 1728821195
+    locked: 0
+  - name: Knobs
+    uniqueID: 242631513
     locked: 0
