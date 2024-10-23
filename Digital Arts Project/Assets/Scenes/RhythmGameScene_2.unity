@@ -4977,6 +4977,7 @@ GameObject:
   - component: {fileID: 1589426570}
   - component: {fileID: 1589426572}
   - component: {fileID: 1589426571}
+  - component: {fileID: 1589426573}
   m_Layer: 5
   m_Name: img_LP2
   m_TagString: Untagged
@@ -5041,6 +5042,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589426569}
   m_CullTransparentMesh: 1
+--- !u!114 &1589426573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589426569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33feb53b8a494184ca5d3a471c61cea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 0, z: -10}
+  speed: 2
+  goSpin: 0
 --- !u!1 &1704437236
 GameObject:
   m_ObjectHideFlags: 0
@@ -5880,6 +5896,8 @@ MonoBehaviour:
   leftBeatScroller: {fileID: 547506383}
   rightBeatScroller: {fileID: 230417289}
   scratchKeyCode: 32
+  recordSpin: {fileID: 2143924920}
+  recordSpin2: {fileID: 1589426573}
   gameState1: 0
   gamestate2: 0
   eqKnobsButtons: {fileID: 465103661}
@@ -5911,7 +5929,7 @@ MonoBehaviour:
   txt_left_recordTitle: {fileID: 1979229578}
   txt_left_artistName: {fileID: 551169462}
   txt_left_bpm: {fileID: 24546258}
-  lp1Animator: {fileID: 2143924919}
+  objRightRecord: {fileID: 1589426569}
   right_songNumber: 0
   right_maxSongNumber: 2
   right_recordTitle: 
@@ -5924,6 +5942,8 @@ MonoBehaviour:
   txt_right_bpm: {fileID: 694128954}
   objMatchingBPMs: {fileID: 8724649135528950970, guid: 68d89335e874b78499d7a66f39032b60, type: 3}
   matchingBPMs: 0
+  recordSpinRotation: {x: 0, y: 0, z: 10}
+  recordSpinSpeed: 2
   sprite_loveSong28: {fileID: 21300000, guid: 9f05bb0f61c550e40beb5d706c368f57, type: 3}
   sprite_typeShi: {fileID: 21300000, guid: b6f13f89499f82547b85769d48c8cd04, type: 3}
   totalNotes: 0
@@ -6399,7 +6419,7 @@ GameObject:
   - component: {fileID: 2143924916}
   - component: {fileID: 2143924918}
   - component: {fileID: 2143924917}
-  - component: {fileID: 2143924919}
+  - component: {fileID: 2143924920}
   m_Layer: 5
   m_Name: img_LP1
   m_TagString: Untagged
@@ -6464,22 +6484,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143924915}
   m_CullTransparentMesh: 1
---- !u!95 &2143924919
-Animator:
-  serializedVersion: 3
+--- !u!114 &2143924920
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143924915}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15ea2f6603f8d4246a7b7eefe0382272, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35085c995d50d7498ba118a39a528c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 0, z: -10}
+  speed: 2
+  goSpin: 0

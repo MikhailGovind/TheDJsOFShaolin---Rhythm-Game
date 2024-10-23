@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class RhythmGameManager : MonoBehaviour
     public KeyCode scratchKeyCode;
 
     public static RhythmGameManager instance;
+    public recordSpin recordSpin;
+    public recordSpin2 recordSpin2;
 
     public bool gameState1; //pick records
     public bool gamestate2;
@@ -59,9 +62,8 @@ public class RhythmGameManager : MonoBehaviour
     public Text txt_left_artistName;
     public Text txt_left_bpm;
 
-    public Animator lp1Animator;
-
     //right record
+    public GameObject objRightRecord;
     public int right_songNumber;
     public int right_maxSongNumber;
     public string right_recordTitle;
@@ -79,6 +81,8 @@ public class RhythmGameManager : MonoBehaviour
     //both records
     public GameObject objMatchingBPMs;
     public bool matchingBPMs;
+    public Vector3 recordSpinRotation;
+    public float recordSpinSpeed;
 
     //song sprites
     public Sprite sprite_loveSong28;
@@ -114,37 +118,27 @@ public class RhythmGameManager : MonoBehaviour
     public float outOfZone;
     public bool crossfaderEnum;
 
+    [Header("Scratch")]
+    public float scratchBonus;
+    public float scratchPoints;
+    public float scratchKeyTimeDown;
+    public bool scratchKeyDown;
+
+    public bool scratchQte;
+
+    public float scratchRandomizer1;
+    public int scratchRandomizer2;
+
+    public GameObject scratchOverlay;
+
     #endregion
 
     void Start()
     {
+        //game management
         instance = this;
 
         music.pitch = 1;
-
-        scorePerNote = 100;
-        scorePerGoodNote = 125;
-        scorePerPerfectNote = 150;
-        currentScore = 0;
-        backgroundScore = 0;
-        txtScore.text = currentScore.ToString();
-
-        currentMultiplier = 1;
-        multiplierEnum = true;
-
-        totalNotes = FindObjectsOfType<NoteObject>().Length;
-
-        sldrCrossfader.value = 1f;
-        sldrCrossfaderGuide.value = 5f;
-
-        currentCrossfaderMultiplier = 1;
-
-        crossfaderEnum = true;
-
-        left_songNumber = 1;
-        right_songNumber = 2;
-
-        matchingBPMs = true;
 
         gameState1 = true;
         gamestate2 = false;
@@ -154,6 +148,39 @@ public class RhythmGameManager : MonoBehaviour
         rightNoteHolder.SetActive(false);
         pnlOverlay.SetActive(false);
         pnlCrossfader.SetActive(false);
+
+        //score
+        scorePerNote = 100;
+        scorePerGoodNote = 125;
+        scorePerPerfectNote = 150;
+        currentScore = 0;
+        backgroundScore = 0;
+        txtScore.text = currentScore.ToString();
+
+        //multiplier
+        currentMultiplier = 1;
+        multiplierEnum = true;
+
+        totalNotes = FindObjectsOfType<NoteObject>().Length;
+
+        //crossfader
+        sldrCrossfader.value = 1f;
+        sldrCrossfaderGuide.value = 5f;
+
+        currentCrossfaderMultiplier = 1;
+
+        crossfaderEnum = true;
+
+        //records
+        left_songNumber = 1;
+        right_songNumber = 2;
+
+        matchingBPMs = true;
+
+        //scratch
+        scratchKeyDown = false;
+        scratchQte = false;
+        scratchOverlay.SetActive(false);
     }
 
     void Update()
@@ -169,7 +196,9 @@ public class RhythmGameManager : MonoBehaviour
                 rightBeatScroller.hasStarted = true;
 
                 music.Play();
-                lp1Animator.SetTrigger("LP1_Spin");
+
+                recordSpin.goSpin = true;
+                recordSpin2.goSpin = true;
             }
         }
 
@@ -294,7 +323,7 @@ public class RhythmGameManager : MonoBehaviour
                     left_songNumber = 1;
                 }
 
-                lp1Animator.SetTrigger("LP1_placedOn");
+                StartCoroutine(spinLeftRecord());
             }
         }
 
@@ -339,6 +368,8 @@ public class RhythmGameManager : MonoBehaviour
                 {
                     right_songNumber = 1;
                 }
+
+                StartCoroutine(spinRightRecord());
             }
         }
 
@@ -373,14 +404,58 @@ public class RhythmGameManager : MonoBehaviour
         if (Input.GetKeyDown(scratchKeyCode))
         {
             music.pitch = -1;
+            scratchKeyDown = true;
         }
 
         if (Input.GetKeyUp(scratchKeyCode))
         {
+            scratchKeyDown = false;
             music.pitch = 1;
         }
 
+        if (scratchQte)
+        {
+            scratchOverlay.SetActive(true);
+            if (scratchKeyDown)
+            {
+                scratchKeyTimeDown += Time.deltaTime;
+            }
+        }
+        else
+        {
+            scratchOverlay.SetActive(false);
+        }
+
+        scratchRandomizer1 = UnityEngine.Random.Range(0, 100);
+        scratchRandomizer2 = UnityEngine.Random.Range(0, 10);
+
+        if (scratchRandomizer1 == scratchRandomizer2)
+        {
+            StartCoroutine(scratchZone());
+        }
+
         #endregion
+    }
+
+    public IEnumerator scratchZone()
+    {
+        //scratchQte = true;
+
+        yield return new WaitForSeconds(3f);
+
+        //scratchQte = false;
+        //scratchKeyTimeDown = scratchPoints;
+
+        //scratchBonus = (500 + (scratchPoints * 100)) * currentMultiplier * currentCrossfaderMultiplier;
+
+        //int intScratchBonus = Convert.ToInt32(Mathf.Round(scratchBonus));
+
+        //currentScore = currentScore + intScratchBonus;
+
+        //yield return new WaitForSeconds(0.01f);
+
+        //scratchPoints = 0;
+        //scratchBonus = 0;
     }
 
     public void noteHit()
@@ -410,7 +485,7 @@ public class RhythmGameManager : MonoBehaviour
         txtScore.text = currentScore.ToString();
     }
 
-    #region Text Coroutines
+    #region Coroutines
 
     public IEnumerator leftSongTextUp()
     {
@@ -525,6 +600,24 @@ public class RhythmGameManager : MonoBehaviour
         txtCrossfaderMultiplier.color = Color.white;
 
         crossfaderEnum = true;
+    }
+
+    public IEnumerator spinLeftRecord()
+    {
+        objLeftRecord.transform.eulerAngles = new Vector3(objLeftRecord.transform.eulerAngles.x, objLeftRecord.transform.eulerAngles.y, 90);
+
+        yield return new WaitForSeconds(0.5f);
+
+        objLeftRecord.transform.eulerAngles = new Vector3(objLeftRecord.transform.eulerAngles.x, objLeftRecord.transform.eulerAngles.y, 0);
+    }
+
+    public IEnumerator spinRightRecord()
+    {
+        objRightRecord.transform.eulerAngles = new Vector3(objRightRecord.transform.eulerAngles.x, objRightRecord.transform.eulerAngles.y, 90);
+
+        yield return new WaitForSeconds(0.5f);
+
+        objRightRecord.transform.eulerAngles = new Vector3(objRightRecord.transform.eulerAngles.x, objRightRecord.transform.eulerAngles.y, 0);
     }
 
     #endregion
