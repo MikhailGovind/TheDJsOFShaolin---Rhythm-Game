@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -130,6 +131,7 @@ public class RhythmGameManager : MonoBehaviour
     public int scratchRandomizer2;
 
     public GameObject scratchOverlay;
+    public GameObject objLightning;
 
     #endregion
 
@@ -181,6 +183,7 @@ public class RhythmGameManager : MonoBehaviour
         scratchKeyDown = false;
         scratchQte = false;
         scratchOverlay.SetActive(false);
+        objLightning.SetActive(false);
     }
 
     void Update()
@@ -405,17 +408,41 @@ public class RhythmGameManager : MonoBehaviour
         {
             music.pitch = -1;
             scratchKeyDown = true;
+
+            if (sldrCrossfader.value < 5)
+            {
+                recordSpin.goSpin = false;
+                recordSpin.onScratch = true;
+            }
+
+            if (sldrCrossfader.value > 5)
+            {
+                recordSpin2.goSpin = false;
+                recordSpin2.onScratch = true;
+            }
+
+            if (sldrCrossfader.value == 5)
+            {
+                recordSpin.goSpin = false;
+                recordSpin.onScratch = true;
+                recordSpin2.goSpin = false;
+                recordSpin2.onScratch = true;
+            }
         }
 
         if (Input.GetKeyUp(scratchKeyCode))
         {
-            scratchKeyDown = false;
             music.pitch = 1;
+            scratchKeyDown = false;
+
+            recordSpin.goSpin = true;
+            recordSpin.onScratch = false;
+            recordSpin2.goSpin = true;
+            recordSpin2.onScratch = false;
         }
 
         if (scratchQte)
         {
-            scratchOverlay.SetActive(true);
             if (scratchKeyDown)
             {
                 scratchKeyTimeDown += Time.deltaTime;
@@ -423,25 +450,40 @@ public class RhythmGameManager : MonoBehaviour
         }
         else
         {
-            scratchOverlay.SetActive(false);
+            if (scratchKeyDown)
+            {
+                scratchKeyTimeDown -= Time.deltaTime;
+
+                if (scratchKeyTimeDown <= 0)
+                {
+                    scratchKeyTimeDown = 0;
+                }
+            }
         }
 
-        scratchRandomizer1 = UnityEngine.Random.Range(0, 100);
+        scratchRandomizer1 = UnityEngine.Random.Range(0, 10000);
         scratchRandomizer2 = UnityEngine.Random.Range(0, 10);
 
         if (scratchRandomizer1 == scratchRandomizer2)
         {
-            StartCoroutine(scratchZone());
+            StartCoroutine(scratchTime());
         }
 
         #endregion
     }
 
-    public IEnumerator scratchZone()
+    public IEnumerator scratchTime()
     {
-        //scratchQte = true;
+        CameraShake.Shake(duration: 3f, strength: 0.3f);
+        scratchQte = true;
+        scratchOverlay.SetActive(true);
+        objLightning.SetActive(true);
 
         yield return new WaitForSeconds(3f);
+
+        scratchQte = false;
+        scratchOverlay.SetActive(false);
+        objLightning.SetActive(false);
 
         //scratchQte = false;
         //scratchKeyTimeDown = scratchPoints;
@@ -483,7 +525,7 @@ public class RhythmGameManager : MonoBehaviour
 
         //currentScore += scorePerNote * currentMultiplier;
         txtScore.text = currentScore.ToString();
-    }
+    }     
 
     #region Coroutines
 

@@ -8,12 +8,18 @@ public class recordSpin : MonoBehaviour
     public float speed;
 
     public bool goSpin;
+    public bool onScratch;
 
     void Update()
     {
         if (goSpin)
         {
             transform.Rotate(rotation * speed * Time.deltaTime);
+        }
+
+        if (onScratch)
+        {
+            transform.Rotate(-rotation * speed * Time.deltaTime);
         }
     }
 }
