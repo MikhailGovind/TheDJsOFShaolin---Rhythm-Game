@@ -22,7 +22,8 @@ public class RhythmGameManager : MonoBehaviour
     public recordSpin2 recordSpin2;
 
     public bool gameState1; //pick records
-    public bool gamestate2;
+    public bool gameState2; //game time
+    public bool gameState3; //results
 
     [Header("Gamestate 2")]
     public GameObject eqKnobsButtons, leftNoteHolder, rightNoteHolder, pnlOverlay, pnlCrossfader; 
@@ -89,13 +90,6 @@ public class RhythmGameManager : MonoBehaviour
     public Sprite sprite_loveSong28;
     public Sprite sprite_typeShi;
 
-    [Header("Results")]
-    public float totalNotes;
-    public float normalNoteHits;
-    public float goodNoteHits;
-    public float perfectNoteHits;
-    public float missedNotes;
-
     [Header("Crossfader")]
     public Slider sldrCrossfader;
     public KeyCode leftCrossFaderKey;
@@ -120,8 +114,6 @@ public class RhythmGameManager : MonoBehaviour
     public bool crossfaderEnum;
 
     [Header("Scratch")]
-    public float scratchBonus;
-    public float scratchPoints;
     public float scratchKeyTimeDown;
     public bool scratchKeyDown;
 
@@ -130,8 +122,35 @@ public class RhythmGameManager : MonoBehaviour
     public float scratchRandomizer1;
     public int scratchRandomizer2;
 
-    public GameObject scratchOverlay;
     public GameObject objLightning;
+
+    [Header("Results")]
+    public GameObject pnlResults;
+    public KeyCode resultKeyCode;
+
+    public float totalBeats; 
+
+    public float normalBeatHits;
+    public Text txtNormalBeatHits;
+
+    public float goodBeatHits;
+    public Text txtGoodBeatHits;
+
+    public float perfectBeatHits;
+    public Text txtPerfectBeatHits;
+
+    public float missedBeats;
+    public Text txtMissedBeatHits;
+
+    public float percentageHit;
+    public Text txtPercentageHit;
+
+    public float scratchBonus;
+    public Text txtScratchBonus;
+
+    public float totalScore;
+    public Text txtTotalScore;
+
 
     #endregion
 
@@ -143,13 +162,15 @@ public class RhythmGameManager : MonoBehaviour
         music.pitch = 1;
 
         gameState1 = true;
-        gamestate2 = false;
+        gameState2 = false;
 
         eqKnobsButtons.SetActive(false);
         leftNoteHolder.SetActive(false);
         rightNoteHolder.SetActive(false);
         pnlOverlay.SetActive(false);
         pnlCrossfader.SetActive(false);
+
+        //totalBeats = GameObject.FindGameObjectsWithTag("Beats").Length;
 
         //score
         scorePerNote = 100;
@@ -162,8 +183,6 @@ public class RhythmGameManager : MonoBehaviour
         //multiplier
         currentMultiplier = 1;
         multiplierEnum = true;
-
-        totalNotes = FindObjectsOfType<NoteObject>().Length;
 
         //crossfader
         sldrCrossfader.value = 1f;
@@ -182,19 +201,22 @@ public class RhythmGameManager : MonoBehaviour
         //scratch
         scratchKeyDown = false;
         scratchQte = false;
-        scratchOverlay.SetActive(false);
         objLightning.SetActive(false);
+
+        //results
+        pnlResults.SetActive(false);
     }
 
     void Update()
     {
         #region Start music
 
-        if (!startPlaying && gamestate2)
+        if (!startPlaying && gameState2)
         {
             if (Input.anyKeyDown)
             {
                 startPlaying = true;
+                //totalBeats = FindObjectsOfType<NoteObject>().Length;
                 leftBeatScroller.hasStarted = true;
                 rightBeatScroller.hasStarted = true;
 
@@ -205,13 +227,45 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
-        if (gamestate2)
+        if (gameState2)
         {
             eqKnobsButtons.SetActive(true);
             leftNoteHolder.SetActive(true);
             rightNoteHolder.SetActive(true);
             pnlOverlay.SetActive(true);
             pnlCrossfader.SetActive(true);
+        }
+
+        if (gameState3)
+        {
+            pnlResults.SetActive(true);
+            pnlOverlay.SetActive(false);
+            pnlCrossfader.SetActive(false);
+            eqKnobsButtons.SetActive(false);
+            leftNoteHolder.SetActive(false);
+            rightNoteHolder.SetActive(false);
+
+            startPlaying = false;
+
+            txtNormalBeatHits.text = normalBeatHits.ToString();
+            txtGoodBeatHits.text = goodBeatHits.ToString();
+            txtPerfectBeatHits.text = perfectBeatHits.ToString();
+            txtMissedBeatHits.text = missedBeats.ToString();
+
+            percentageHit = ((normalBeatHits + goodBeatHits + perfectBeatHits) / totalBeats) * 100f;
+            txtPercentageHit.text = percentageHit.ToString("F1") + "%";
+
+            scratchBonus = scratchKeyTimeDown * 1000;
+            txtScratchBonus.text = scratchBonus.ToString("F0");
+
+            totalScore = currentScore + scratchBonus;
+            txtTotalScore.text = totalScore.ToString("F0");
+        }
+
+        if (Input.GetKeyDown(resultKeyCode))
+        {
+            gameState3 = true;
+            gameState2 = false;
         }
 
         #endregion
@@ -474,30 +528,31 @@ public class RhythmGameManager : MonoBehaviour
 
     public IEnumerator scratchTime()
     {
-        CameraShake.Shake(duration: 3f, strength: 0.3f);
-        scratchQte = true;
-        scratchOverlay.SetActive(true);
-        objLightning.SetActive(true);
+        if (gameState2)
+        {
+            CameraShake.Shake(duration: 3f, strength: 0.3f);
+            scratchQte = true;
+            objLightning.SetActive(true);
 
-        yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f);
 
-        scratchQte = false;
-        scratchOverlay.SetActive(false);
-        objLightning.SetActive(false);
+            scratchQte = false;
+            objLightning.SetActive(false);
 
-        //scratchQte = false;
-        //scratchKeyTimeDown = scratchPoints;
+            //scratchQte = false;
+            //scratchKeyTimeDown = scratchPoints;
 
-        //scratchBonus = (500 + (scratchPoints * 100)) * currentMultiplier * currentCrossfaderMultiplier;
+            //scratchBonus = (500 + (scratchPoints * 100)) * currentMultiplier * currentCrossfaderMultiplier;
 
-        //int intScratchBonus = Convert.ToInt32(Mathf.Round(scratchBonus));
+            //int intScratchBonus = Convert.ToInt32(Mathf.Round(scratchBonus));
 
-        //currentScore = currentScore + intScratchBonus;
+            //currentScore = currentScore + intScratchBonus;
 
-        //yield return new WaitForSeconds(0.01f);
+            //yield return new WaitForSeconds(0.01f);
 
-        //scratchPoints = 0;
-        //scratchBonus = 0;
+            //scratchPoints = 0;
+            //scratchBonus = 0;
+        }
     }
 
     public void noteHit()
@@ -566,7 +621,7 @@ public class RhythmGameManager : MonoBehaviour
 
         matchingBPMs = true;
         gameState1 = false;
-        gamestate2 = true;
+        gameState2 = true;
     }
 
     public IEnumerator scoreTextUp()
@@ -672,7 +727,7 @@ public class RhythmGameManager : MonoBehaviour
         backgroundScore += scorePerNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
-        normalNoteHits++;
+        normalBeatHits++;
     }
 
     public void goodHit()
@@ -681,7 +736,7 @@ public class RhythmGameManager : MonoBehaviour
         backgroundScore += scorePerGoodNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
-        goodNoteHits++;
+        goodBeatHits++;
     }
 
     public void perfectHit()
@@ -690,7 +745,7 @@ public class RhythmGameManager : MonoBehaviour
         backgroundScore += scorePerPerfectNote * currentMultiplier * currentCrossfaderMultiplier;
         noteHit();
 
-        perfectNoteHits++;
+        perfectBeatHits++;
     }
 
     public void noteMissed()
@@ -709,7 +764,7 @@ public class RhythmGameManager : MonoBehaviour
             multiplierEnum = true;
         }
 
-        missedNotes++;
+        missedBeats++;
     }
 
     #endregion
