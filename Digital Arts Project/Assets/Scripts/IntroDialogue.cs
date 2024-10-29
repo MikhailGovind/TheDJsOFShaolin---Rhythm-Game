@@ -68,6 +68,8 @@ public class IntroDialogue : MonoBehaviour
     [TextArea(3, 10)]
     public string zayString4;
 
+    public Animator zayAnimator;
+
     [Header("Ash")]
     public Text ashName;
     public Text ashSentence;
@@ -86,6 +88,8 @@ public class IntroDialogue : MonoBehaviour
     public string ashString6;
     [TextArea(3, 10)]
     public string ashString7;
+
+    public Animator ashAnimator;
 
     [Header("Maya")]
     public Text mayaName;
@@ -111,6 +115,8 @@ public class IntroDialogue : MonoBehaviour
     {
         sentenceNumber = 0;
         player.moveSpeed = 0f;
+
+        pnlIntroDialogue.SetActive(false);
 
         zayBubble.SetActive(false);
         ashBubble.SetActive(false);
@@ -139,7 +145,7 @@ public class IntroDialogue : MonoBehaviour
         {
             StartCoroutine(cameraZoom());
             StartCoroutine(Date());
-            StartCoroutine(flashBlue());
+            //StartCoroutine(flashBlue());
         }
 
         pcName.text = "Playable Character";
@@ -154,6 +160,8 @@ public class IntroDialogue : MonoBehaviour
 
         if (sentenceNumber == 1) //ash 1
         {
+            pnlIntroDialogue.SetActive(true);
+
             zayBubble.SetActive(false);
             ashBubble.SetActive(true);
             mayaBubble.SetActive(false);
@@ -320,6 +328,7 @@ public class IntroDialogue : MonoBehaviour
             trgToJamScene.SetActive(true);
 
             player.moveSpeed = 5f;
+            StartCoroutine(crewWalk());
         }
         #endregion  
     }
@@ -334,7 +343,7 @@ public class IntroDialogue : MonoBehaviour
         sentenceNumber = 8;
         ashSentence.text = ashString4;
 
-        mayaAnimator.SetTrigger("maya_walkToGroup");
+        StartCoroutine(mayaIdle());
     }
 
     public void pcOption2()
@@ -342,7 +351,7 @@ public class IntroDialogue : MonoBehaviour
         sentenceNumber = 8;
         ashSentence.text = ashString5;
 
-        mayaAnimator.SetTrigger("maya_walkToGroup");
+        StartCoroutine(mayaIdle());
     }
 
     public IEnumerator cameraZoom()
@@ -360,11 +369,7 @@ public class IntroDialogue : MonoBehaviour
             virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(initialZoom, targetZoom, t);
         }
 
-        yield return new WaitForSeconds(5f);
-
-        sentenceNumber = 1;
-
-        btnNextText.SetActive(true);
+        //yield return new WaitForSeconds(5f);
     }
 
     public IEnumerator Date()
@@ -377,17 +382,42 @@ public class IntroDialogue : MonoBehaviour
 
         dateImg2024.SetActive(false);
         dateImg1973.SetActive(true);
+        pnlDialogue.color = new Color(0, 0, 1, 0.1f);
 
         yield return new WaitForSeconds(1f);
 
+        dateImg2024.SetActive(true);
+        dateImg1973.SetActive(false);
+        pnlDialogue.color = new Color(0, 0, 1, 0f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        dateImg2024.SetActive(false);
+        dateImg1973.SetActive(true);
+        pnlDialogue.color = new Color(0, 0, 1, 0.1f);
+
+        yield return new WaitForSeconds(0.5f);
 
         dateImg2024.SetActive(true);
         dateImg1973.SetActive(false);
+        pnlDialogue.color = new Color(0, 0, 1, 0f);
 
         yield return new WaitForSeconds(1f);
 
         dateImg2024.SetActive(false);
         dateImg1973.SetActive(false);
+
+        sentenceNumber = 1;
+        btnNextText.SetActive(true);
+    }
+
+    public IEnumerator mayaIdle()
+    {
+        mayaAnimator.SetTrigger("maya_walkToGroup");
+
+        yield return new WaitForSeconds(2.3f);
+
+        mayaAnimator.SetTrigger("maya_Idle");
     }
 
     public IEnumerator openInvite()
@@ -417,13 +447,14 @@ public class IntroDialogue : MonoBehaviour
         objMaya.SetActive(false);
     }
 
-    //time travel glitch effect
-    public IEnumerator flashBlue()
+    public IEnumerator crewWalk()
     {
-        pnlDialogue.color = new Color(0, 0, 1, 0.1f);
+        ashAnimator.SetTrigger("ash_walkToEntrance");
+        zayAnimator.SetTrigger("zay_walkToEntrance");
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(6f);
 
-        pnlDialogue.color = new Color(0, 0, 1, 0f);
+        ashAnimator.SetTrigger("ash_Idle");
+        zayAnimator.SetTrigger("zay_Idle");
     }
 }

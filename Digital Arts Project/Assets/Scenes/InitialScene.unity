@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 194612122}
   - component: {fileID: 194612121}
   - component: {fileID: 194612120}
+  - component: {fileID: 194612124}
   m_Layer: 0
   m_Name: Zay
   m_TagString: Untagged
@@ -693,18 +694,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.45872593}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.1926122}
   m_EdgeRadius: 0
 --- !u!212 &194612122
 SpriteRenderer:
@@ -746,9 +747,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.7696911, g: 1, b: 0.6924528, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 6327838495948775950, guid: 39cd62f5cc4801a46ace699210bc23be, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -771,6 +772,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &194612124
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194612119}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b88b6f2ab8181142bcfc2cdd3af5b0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &223561175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1445,7 @@ MonoBehaviour:
   zayString2: "I\u2019m not gonna lie. Low-key, yeah."
   zayString3: "Ooh! Let\u2019s see watchu got there Casanova."
   zayString4: But it says 1973?
+  zayAnimator: {fileID: 194612124}
   ashName: {fileID: 1589902394}
   ashSentence: {fileID: 40853741}
   ashBubble: {fileID: 1637028534}
@@ -1437,6 +1458,7 @@ MonoBehaviour:
     the number is this exact building."
   ashString7: "They must\u2019ve just messed up the date. Let\u2019s just go check
     it out."
+  ashAnimator: {fileID: 653581828}
   mayaName: {fileID: 497832900}
   mayaSentence: {fileID: 1019304085}
   mayaBubble: {fileID: 1148533047}
@@ -1554,6 +1576,7 @@ GameObject:
   - component: {fileID: 653581826}
   - component: {fileID: 653581825}
   - component: {fileID: 653581824}
+  - component: {fileID: 653581828}
   m_Layer: 0
   m_Name: Ash
   m_TagString: Untagged
@@ -1595,18 +1618,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.49564874}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.1305387}
   m_EdgeRadius: 0
 --- !u!212 &653581826
 SpriteRenderer:
@@ -1648,9 +1671,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.4943396, b: 0.4943396, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 3016845615847741539, guid: 3c5e28bf291d93040b17b5bd079bdb01, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -1673,6 +1696,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &653581828
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653581823}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7027ad76fbed02e45b88e66ef1fbdfbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &683188832
 GameObject:
   m_ObjectHideFlags: 0
@@ -7768,18 +7810,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.4712602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.2082992}
   m_EdgeRadius: 0
 --- !u!212 &1804875293
 SpriteRenderer:
@@ -7821,12 +7863,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9845234, g: 0.67358494, b: 1, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 901989589269363090, guid: 89e2ff52d92bcad49b62a0ad500de0fa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

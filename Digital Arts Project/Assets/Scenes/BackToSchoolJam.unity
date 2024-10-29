@@ -595,7 +595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -479.62006, y: 483.73}
+  m_AnchoredPosition: {x: -479.6201, y: 483.73}
   m_SizeDelta: {x: -959.24, y: -967.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73314804
@@ -6724,7 +6724,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.47570777}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6735,7 +6735,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.1943393}
   m_EdgeRadius: 0
 --- !u!212 &1804875293
 SpriteRenderer:
@@ -6779,7 +6779,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 901989589269363090, guid: 89e2ff52d92bcad49b62a0ad500de0fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -6796,7 +6796,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804875290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.62, y: 5.97, z: 0}
+  m_LocalPosition: {x: 16, y: 5.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2136009963}
@@ -6813,7 +6813,7 @@ Animator:
   m_GameObject: {fileID: 1804875290}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 18ce540b711686b419c2c66a1a1a4cd9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 318ccab6d7fde0244a1abad4cbaa786f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7411,7 +7411,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.015384793}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7422,7 +7422,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.0307696}
   m_EdgeRadius: 0
 --- !u!114 &2136009966
 MonoBehaviour:
