@@ -69,6 +69,7 @@ public class IntroDialogue : MonoBehaviour
     public string zayString4;
 
     public Animator zayAnimator;
+    public GameObject objZay;
 
     [Header("Ash")]
     public Text ashName;
@@ -90,6 +91,7 @@ public class IntroDialogue : MonoBehaviour
     public string ashString7;
 
     public Animator ashAnimator;
+    public GameObject objAsh;
 
     [Header("Maya")]
     public Text mayaName;
@@ -378,13 +380,25 @@ public class IntroDialogue : MonoBehaviour
          
         dateImg2024.SetActive(true);
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
 
         dateImg2024.SetActive(false);
         dateImg1973.SetActive(true);
         pnlDialogue.color = new Color(0, 0, 1, 0.1f);
 
         yield return new WaitForSeconds(1f);
+
+        dateImg2024.SetActive(true);
+        dateImg1973.SetActive(false);
+        pnlDialogue.color = new Color(0, 0, 1, 0f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        dateImg2024.SetActive(false);
+        dateImg1973.SetActive(true);
+        pnlDialogue.color = new Color(0, 0, 1, 0.1f);
+
+        yield return new WaitForSeconds(0.5f);
 
         dateImg2024.SetActive(true);
         dateImg1973.SetActive(false);
@@ -454,7 +468,7 @@ public class IntroDialogue : MonoBehaviour
 
         yield return new WaitForSeconds(6f);
 
-        ashAnimator.SetTrigger("ash_Idle");
-        zayAnimator.SetTrigger("zay_Idle");
+        objAsh.SetActive(false);
+        objZay.SetActive(false);
     }
 }
