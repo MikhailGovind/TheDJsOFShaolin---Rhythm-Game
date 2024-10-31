@@ -141,6 +141,7 @@ public class BackToSchoolJam : MonoBehaviour
     public Text cokeName;
     public Text cokeSentence;
     public GameObject cokeBubble;
+    public Animator cokeAnimator;
     [TextArea(3, 10)]
     public string cokeString1;
     [TextArea(3, 10)]
@@ -186,7 +187,7 @@ public class BackToSchoolJam : MonoBehaviour
 
         mayaName.text = "Maya";
 
-        manName.text = "Man";
+        manName.text = "ManMan";
 
         devonName.text = "Devon";
 
@@ -509,6 +510,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonBubble.SetActive(true);
 
             devonSentence.text = devonString1;
+            cokeAnimator.SetTrigger("coke_walkToHerc");
         }
 
         if (sentenceNumber == 27) //zay 4
@@ -520,6 +522,7 @@ public class BackToSchoolJam : MonoBehaviour
             pcBubble.SetActive(false);
 
             zaySentence.text = zayString4;
+            cokeAnimator.SetTrigger("coke_idleByHerc");
         }
 
         if (sentenceNumber == 28) //pc 9
@@ -592,7 +595,7 @@ public class BackToSchoolJam : MonoBehaviour
             devonBubble.SetActive(false);
 
             btnNextText.SetActive(false);
-            devonAnimator.SetTrigger("devon_walkToCoke");
+            StartCoroutine(devonWalk());
 
             currentQuest.SetActive(true);
             txtQuest.text = currentQuestString3;
@@ -612,6 +615,7 @@ public class BackToSchoolJam : MonoBehaviour
             btnNextText.SetActive(true);
 
             devonSentence.text = devonString4;
+            StartCoroutine(cokeWalkToPC());
 
             currentQuest.SetActive(false);
 
@@ -743,5 +747,30 @@ public class BackToSchoolJam : MonoBehaviour
         yield return new WaitForSeconds(5f);
 
         btnNextText.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+
+        ashAnimator.SetTrigger("ash_afterWalkIdle");
+
+        yield return new WaitForSeconds(5f);
+        zayAnimator.SetTrigger("zay_afterWalkIdle");
+    }
+
+    public IEnumerator cokeWalkToPC()
+    {
+        cokeAnimator.SetTrigger("coke_walkToPC");
+
+        yield return new WaitForSeconds(2f);
+
+        cokeAnimator.SetTrigger("coke_idleByPC");
+    }
+
+    public IEnumerator devonWalk()
+    {
+        devonAnimator.SetTrigger("devon_walkToCoke");
+
+        yield return new WaitForSeconds(10f);
+
+        devonAnimator.SetTrigger("devon_afterWalkIdle");
     }
 }
