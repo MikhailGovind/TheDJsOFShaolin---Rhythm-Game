@@ -317,7 +317,7 @@ public class BackToSchoolJam : MonoBehaviour
             ashBubble.SetActive(false);
             mayaBubble.SetActive(false);
             manBubble.SetActive(false);
-            manAnimator.SetTrigger("man_walkAway");
+            StartCoroutine(manmanWalkAway());
 
             txtQuest.text = currentQuestString1;
             currentQuest.SetActive(true);
@@ -746,6 +746,7 @@ public class BackToSchoolJam : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
+        manAnimator.SetTrigger("man_middleIdle");
         btnNextText.SetActive(true);
 
         yield return new WaitForSeconds(4f);
@@ -772,5 +773,14 @@ public class BackToSchoolJam : MonoBehaviour
         yield return new WaitForSeconds(10f);
 
         devonAnimator.SetTrigger("devon_afterWalkIdle");
+    }
+
+    public IEnumerator manmanWalkAway()
+    {
+        manAnimator.SetTrigger("man_walkAway");
+
+        yield return new WaitForSeconds(5f);
+
+        manAnimator.SetTrigger("man_afterWalkIdle");
     }
 }
