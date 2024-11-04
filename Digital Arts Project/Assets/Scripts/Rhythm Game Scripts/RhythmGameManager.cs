@@ -87,8 +87,8 @@ public class RhythmGameManager : MonoBehaviour
     public float recordSpinSpeed;
 
     //song sprites
-    public Sprite sprite_loveSong28;
-    public Sprite sprite_typeShi;
+    public Sprite sprite_getUpAndDance;
+    public Sprite sprite_bustinLoose;
 
     [Header("Crossfader")]
     public Slider sldrCrossfader;
@@ -386,18 +386,18 @@ public class RhythmGameManager : MonoBehaviour
 
         if (left_songNumber == 1)
         {
-            left_recordTitle = "Love Song 28";
-            left_artistName = "Jullian Gomes";
-            left_bpm = 120;
-            img_leftRecord.sprite = sprite_loveSong28;
+            left_recordTitle = "Get Up and Down";
+            left_artistName = "Freedom";
+            left_bpm = 107;
+            img_leftRecord.sprite = sprite_getUpAndDance;
         }
 
         if (left_songNumber == 2)
         {
-            left_recordTitle = "Type Shi";
-            left_artistName = "I";
-            left_bpm = 80;
-            img_leftRecord.sprite = sprite_typeShi;
+            left_recordTitle = "Bustin' Loose";
+            left_artistName = "Chuck Brown and the Soul Searchers";
+            left_bpm = 111;
+            img_leftRecord.sprite = sprite_bustinLoose;
         }
 
         txt_right_recordTitle.text = right_recordTitle.ToString();
@@ -430,20 +430,20 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
-        if (right_songNumber == 1)
+        if (left_songNumber == 1)
         {
-            right_recordTitle = "Love Song 28";
-            right_artistName = "Jullian Gomes";
-            right_bpm = 120;
-            img_rightRecord.sprite = sprite_loveSong28;
+            right_recordTitle = "Get Up and Down";
+            right_artistName = "Freedom";
+            right_bpm = 107;
+            img_rightRecord.sprite = sprite_getUpAndDance;
         }
 
-        if (right_songNumber == 2)
+        if (left_songNumber == 2)
         {
-            right_recordTitle = "Type Shi";
-            right_artistName = "I";
-            right_bpm = 80;
-            img_rightRecord.sprite = sprite_typeShi;
+            right_recordTitle = "Bustin' Loose";
+            right_artistName = "Chuck Brown and the Soul Searchers";
+            right_bpm = 111;
+            img_rightRecord.sprite = sprite_bustinLoose;
         }
 
         if (!matchingBPMs)
@@ -538,20 +538,6 @@ public class RhythmGameManager : MonoBehaviour
 
             scratchQte = false;
             objLightning.SetActive(false);
-
-            //scratchQte = false;
-            //scratchKeyTimeDown = scratchPoints;
-
-            //scratchBonus = (500 + (scratchPoints * 100)) * currentMultiplier * currentCrossfaderMultiplier;
-
-            //int intScratchBonus = Convert.ToInt32(Mathf.Round(scratchBonus));
-
-            //currentScore = currentScore + intScratchBonus;
-
-            //yield return new WaitForSeconds(0.01f);
-
-            //scratchPoints = 0;
-            //scratchBonus = 0;
         }
     }
 
