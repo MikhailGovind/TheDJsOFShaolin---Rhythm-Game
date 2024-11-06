@@ -113,6 +113,10 @@ public class RhythmGameManager : MonoBehaviour
     public float outOfZone;
     public bool crossfaderEnum;
 
+    public int crossfaderRandomNumber;
+    public int crossfaderRandomChecker;
+    public int crossfaderRandomLean;
+
     [Header("Scratch")]
     public float scratchKeyTimeDown;
     public bool scratchKeyDown;
@@ -349,6 +353,32 @@ public class RhythmGameManager : MonoBehaviour
 
         crossfaderValue = sldrCrossfader.value;
         crossfaderGuideValue = sldrCrossfaderGuide.value;
+
+        crossfaderRandomNumber = UnityEngine.Random.Range(0, 5000);
+        crossfaderRandomChecker = UnityEngine.Random.Range(0, 10);
+        crossfaderRandomLean = UnityEngine.Random.Range(0, 10);
+
+        if (crossfaderRandomNumber == crossfaderRandomChecker)
+        {
+            if (crossfaderRandomLean <= 5)
+            {
+                sldrCrossfaderGuide.value = sldrCrossfaderGuide.value - 1f;
+            }
+            else if(crossfaderRandomLean >= 6)
+            {
+                sldrCrossfaderGuide.value = sldrCrossfaderGuide.value + 1f;
+            }
+
+            if (sldrCrossfaderGuide.value <= 0f)
+            {
+                sldrCrossfaderGuide.value = 0f;
+            }
+
+            if (sldrCrossfaderGuide.value >= 10f)
+            {
+                sldrCrossfaderGuide.value = 10f;
+            }
+        }
 
         #endregion
 
