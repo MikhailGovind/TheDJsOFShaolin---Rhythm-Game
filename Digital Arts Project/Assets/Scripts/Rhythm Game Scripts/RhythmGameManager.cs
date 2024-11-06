@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class RhythmGameManager : MonoBehaviour
 
     [Header("Misc")]
     public AudioSource music;
+    public AudioSource backgroundMusic;
     public bool startPlaying;
     public BeatScroller leftBeatScroller;
     public BeatScroller rightBeatScroller;
@@ -155,6 +157,8 @@ public class RhythmGameManager : MonoBehaviour
     public float totalScore;
     public Text txtTotalScore;
 
+    public GameObject objSuccess, btnCloseResults, objFail, btnRetry;
+
 
     #endregion
 
@@ -164,6 +168,8 @@ public class RhythmGameManager : MonoBehaviour
         instance = this;
 
         music.pitch = 1;
+        backgroundMusic.pitch = 1;
+        backgroundMusic.mute = true;
 
         gameState1 = true;
         gameState2 = false;
@@ -209,6 +215,10 @@ public class RhythmGameManager : MonoBehaviour
 
         //results
         pnlResults.SetActive(false);
+        objSuccess.SetActive(false);
+        objFail.SetActive(false);
+        btnCloseResults.SetActive(false);
+        btnRetry.SetActive(false);
     }
 
     void Update()
@@ -220,11 +230,11 @@ public class RhythmGameManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 startPlaying = true;
-                //totalBeats = FindObjectsOfType<NoteObject>().Length;
                 leftBeatScroller.hasStarted = true;
                 rightBeatScroller.hasStarted = true;
 
                 music.Play();
+                backgroundMusic.Play();
 
                 recordSpin.goSpin = true;
                 recordSpin2.goSpin = true;
@@ -242,6 +252,9 @@ public class RhythmGameManager : MonoBehaviour
 
         if (gameState3)
         {
+            music.Stop();
+            backgroundMusic.Stop();
+
             pnlResults.SetActive(true);
             pnlOverlay.SetActive(false);
             pnlCrossfader.SetActive(false);
@@ -275,7 +288,7 @@ public class RhythmGameManager : MonoBehaviour
         #endregion
 
         #region Score
-        
+
         if (currentScore >= 100)
         {
             if (backgroundScore >= 1000)
@@ -283,6 +296,20 @@ public class RhythmGameManager : MonoBehaviour
                 backgroundScore = 0;
                 StartCoroutine(scoreTextUp());
             }
+        }
+
+        if (currentScore >= 155250)
+        {
+            objSuccess.SetActive(true);
+            btnCloseResults.SetActive(true);
+            objFail.SetActive(false);
+            btnRetry.SetActive(false);
+        }
+        
+        if (currentScore <= 155249)
+        {
+            objFail.SetActive(true);
+            btnRetry.SetActive(true);
         }
 
         #endregion
@@ -490,7 +517,9 @@ public class RhythmGameManager : MonoBehaviour
 
         if (Input.GetKeyDown(scratchKeyCode))
         {
-            music.pitch = -1;
+            backgroundMusic.pitch = -1;
+            backgroundMusic.mute = false;
+            music.mute = true;
             scratchKeyDown = true;
 
             if (sldrCrossfader.value < 5)
@@ -516,7 +545,9 @@ public class RhythmGameManager : MonoBehaviour
 
         if (Input.GetKeyUp(scratchKeyCode))
         {
-            music.pitch = 1;
+            backgroundMusic.pitch = 1;
+            backgroundMusic.mute = true;
+            music.mute= false;
             scratchKeyDown = false;
 
             recordSpin.goSpin = true;
@@ -784,4 +815,14 @@ public class RhythmGameManager : MonoBehaviour
     }
 
     #endregion
+
+    public void toOutro()
+    {
+        SceneManager.LoadScene("Outro");
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("RhythmGameScene_2");
+    }
 }
