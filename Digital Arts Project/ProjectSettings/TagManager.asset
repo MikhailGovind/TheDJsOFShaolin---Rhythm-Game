@@ -50,3 +50,12 @@ TagManager:
   - name: Knobs
     uniqueID: 242631513
     locked: 0
+  - name: Notes
+    uniqueID: 882777669
+    locked: 0
+  - name: UI
+    uniqueID: 235536477
+    locked: 0
+  - name: New Layer
+    uniqueID: 2051094889
+    locked: 0

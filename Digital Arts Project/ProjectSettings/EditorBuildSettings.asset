@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BackToSchoolJam.unity
     guid: 1231c92a281cbf64c9b9db5b639c8d93
+  - enabled: 1
+    path: Assets/Scenes/RhythmGameScene_2.unity
+    guid: fd55839efdf906847921d3735e5ccbae
   m_configObjects: {}

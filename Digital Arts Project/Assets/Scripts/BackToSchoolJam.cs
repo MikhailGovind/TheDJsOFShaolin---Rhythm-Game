@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BackToSchoolJam : MonoBehaviour
 {
@@ -713,6 +715,11 @@ public class BackToSchoolJam : MonoBehaviour
             cokeBubble.SetActive(true);
 
             cokeSentence.text = cokeString4;
+        }
+
+        if (sentenceNumber == 42) //to rhythm game
+        {
+            SceneManager.LoadScene("RhythmGameScene_2");
         }
 
         #endregion
