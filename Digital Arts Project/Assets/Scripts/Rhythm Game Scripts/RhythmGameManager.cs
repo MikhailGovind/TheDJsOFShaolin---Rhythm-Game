@@ -3,8 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class RhythmGameManager : MonoBehaviour
@@ -57,6 +59,8 @@ public class RhythmGameManager : MonoBehaviour
     public string left_recordTitle;
     public string left_artistName;
     public int left_bpm;
+    public int maxBpm;
+    public int minBpm;
 
     public Image img_leftRecord;
 
@@ -90,7 +94,10 @@ public class RhythmGameManager : MonoBehaviour
 
     //song sprites
     public Sprite sprite_getUpAndDance;
+    public Sprite sprite_farFarAway;
+    public Sprite sprite_hotStuff;
     public Sprite sprite_bustinLoose;
+    public Sprite sprite_2LiveMix;
 
     [Header("Crossfader")]
     public Slider sldrCrossfader;
@@ -415,6 +422,10 @@ public class RhythmGameManager : MonoBehaviour
         txt_left_artistName.text = left_artistName.ToString();
         txt_left_bpm.text = "BPM: " + left_bpm;
 
+
+        maxBpm = left_bpm + 5;
+        minBpm = left_bpm - 5;
+
         if (gameState1)
         {
             if (Input.GetKeyDown(left_SongNext))
@@ -441,6 +452,7 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
+        //song information
         if (left_songNumber == 1)
         {
             left_recordTitle = "Get Up and Down";
@@ -451,10 +463,34 @@ public class RhythmGameManager : MonoBehaviour
 
         if (left_songNumber == 2)
         {
+            left_recordTitle = "Far Far Away (Pakoussa/TDD Remix)";
+            left_artistName = "Misty Holloway";
+            left_bpm = 120;
+            img_leftRecord.sprite = sprite_farFarAway;
+        }
+
+        if (left_songNumber == 3)
+        {
+            left_recordTitle = "Hot Stuff";
+            left_artistName = "Donna Summer";
+            left_bpm = 120;
+            img_leftRecord.sprite = sprite_hotStuff;
+        }
+
+        if (left_songNumber == 4)
+        {
             left_recordTitle = "Bustin' Loose";
             left_artistName = "Chuck Brown and the Soul Searchers";
             left_bpm = 111;
             img_leftRecord.sprite = sprite_bustinLoose;
+        }
+
+        if (left_songNumber == 5)
+        {
+            left_recordTitle = "2 Live Mix";
+            left_artistName = "The 2 Live Crew";
+            left_bpm = 127;
+            img_leftRecord.sprite = sprite_2LiveMix;
         }
 
         txt_right_recordTitle.text = right_recordTitle.ToString();
@@ -487,7 +523,7 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
-        if (left_songNumber == 1)
+        if (right_songNumber == 1)
         {
             right_recordTitle = "Get Up and Down";
             right_artistName = "Freedom";
@@ -495,7 +531,23 @@ public class RhythmGameManager : MonoBehaviour
             img_rightRecord.sprite = sprite_getUpAndDance;
         }
 
-        if (left_songNumber == 2)
+        if (right_songNumber == 2)
+        {
+            right_recordTitle = "Far Far Away (Pakoussa/TDD Remix)";
+            right_artistName = "Misty Holloway";
+            right_bpm = 120;
+            img_rightRecord.sprite = sprite_farFarAway;
+        }
+
+        if (right_songNumber == 3)
+        {
+            right_recordTitle = "Hot Stuff";
+            right_artistName = "Donna Summer";
+            right_bpm = 120;
+            img_rightRecord.sprite = sprite_hotStuff;
+        }
+
+        if (right_songNumber == 4)
         {
             right_recordTitle = "Bustin' Loose";
             right_artistName = "Chuck Brown and the Soul Searchers";
@@ -503,12 +555,25 @@ public class RhythmGameManager : MonoBehaviour
             img_rightRecord.sprite = sprite_bustinLoose;
         }
 
+        if (right_songNumber == 5)
+        {
+            right_recordTitle = "2 Live Mix";
+            right_artistName = "The 2 Live Crew";
+            right_bpm = 127;
+            img_rightRecord.sprite = sprite_2LiveMix;
+        }
+
         if (!matchingBPMs)
         {
-            if (left_songNumber == right_songNumber)
+            if (right_bpm <= maxBpm && right_bpm >= minBpm)
             {
                 StartCoroutine(matchingBPMS());
             }
+
+            //if (left_songNumber == right_songNumber)
+            //{
+            //    StartCoroutine(matchingBPMS());
+            //}
         }
 
         #endregion
@@ -818,7 +883,7 @@ public class RhythmGameManager : MonoBehaviour
 
     public void toOutro()
     {
-        SceneManager.LoadScene("Outro");
+        SceneManager.LoadScene("OutroScene");
     }
 
     public void Retry()

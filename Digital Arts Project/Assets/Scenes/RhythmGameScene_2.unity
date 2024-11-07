@@ -43487,18 +43487,20 @@ MonoBehaviour:
   multiplierEnum: 0
   objLeftRecord: {fileID: 2143924915}
   left_songNumber: 0
-  left_maxSongNumber: 2
+  left_maxSongNumber: 5
   left_recordTitle: 
   left_artistName: 
   left_bpm: 0
+  maxBpm: 0
+  minBpm: 0
   img_leftRecord: {fileID: 2143924917}
-  left_SongNext: 113
+  left_SongNext: 0
   txt_left_recordTitle: {fileID: 1979229578}
   txt_left_artistName: {fileID: 551169462}
   txt_left_bpm: {fileID: 24546258}
   objRightRecord: {fileID: 1589426569}
   right_songNumber: 0
-  right_maxSongNumber: 2
+  right_maxSongNumber: 5
   right_recordTitle: 
   right_artistName: 
   right_bpm: 0
@@ -43511,8 +43513,11 @@ MonoBehaviour:
   matchingBPMs: 0
   recordSpinRotation: {x: 0, y: 0, z: 10}
   recordSpinSpeed: 2
-  sprite_getUpAndDance: {fileID: 21300000, guid: 9f05bb0f61c550e40beb5d706c368f57, type: 3}
-  sprite_bustinLoose: {fileID: 21300000, guid: b6f13f89499f82547b85769d48c8cd04, type: 3}
+  sprite_getUpAndDance: {fileID: 21300000, guid: 6438b750c6a50a543afad2a49bffdf0d, type: 3}
+  sprite_farFarAway: {fileID: 21300000, guid: 9f05bb0f61c550e40beb5d706c368f57, type: 3}
+  sprite_hotStuff: {fileID: 21300000, guid: e799020a30455d44392d2f95cbfdcf2c, type: 3}
+  sprite_bustinLoose: {fileID: 21300000, guid: 9907753eda2d3fc4298c8265c48944da, type: 3}
+  sprite_2LiveMix: {fileID: 21300000, guid: 641e0061563cdd946ad5b8741e25d4c4, type: 3}
   sldrCrossfader: {fileID: 108459370}
   leftCrossFaderKey: 102
   rightCrossFaderKey: 106
