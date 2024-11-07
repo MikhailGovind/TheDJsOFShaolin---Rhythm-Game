@@ -106,10 +106,7 @@ public class IntroDialogue : MonoBehaviour
     public GameObject objMaya;
 
     [Header("Invite")]
-    public AudioSource audioSource;
-    public AudioClip inviteSound;
     public GameObject invite;
-    public bool inviteSoundPlay;
 
     #endregion
 
@@ -128,7 +125,6 @@ public class IntroDialogue : MonoBehaviour
         btnNextText.SetActive(false);
 
         invite.SetActive(false);
-        inviteSoundPlay = false;
 
         currentQuest.SetActive(false);
         trgToJamScene.SetActive(false);
@@ -147,10 +143,9 @@ public class IntroDialogue : MonoBehaviour
         {
             StartCoroutine(cameraZoom());
             StartCoroutine(Date());
-            //StartCoroutine(flashBlue());
         }
 
-        pcName.text = "Playable Character";
+        pcName.text = "Miks";
 
         allName.text = "All";
 
@@ -437,18 +432,6 @@ public class IntroDialogue : MonoBehaviour
     public IEnumerator openInvite()
     {
         btnNextText.SetActive(false);
-
-        if (inviteSoundPlay == false)
-        {
-            //play audio
-            audioSource.clip = inviteSound;
-            audioSource.Play();
-            Debug.Log("Invite Sound");
-
-            yield return new WaitForSeconds(0.25f);
-
-            inviteSoundPlay = true;
-        }
 
         mayaAnimator.SetTrigger("maya_afterInvite");
 

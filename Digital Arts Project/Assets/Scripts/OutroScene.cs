@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class OutroScene : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class OutroScene : MonoBehaviour
     public int sentenceNumber;
     public GameObject btnNextText;
     public Player player;
+
+    public GameObject objBlueFlash;
+    public Image imgBlueFlash;
 
     [Header("Camera")]
     public CinemachineVirtualCamera virtualCamera;
@@ -74,6 +78,11 @@ public class OutroScene : MonoBehaviour
         mayaBubble.SetActive(false);
         cokeBubble.SetActive(false);
         btnNextText.SetActive(false);
+
+        virtualCamera.m_Lens.OrthographicSize = initialZoom;
+        Debug.Log(virtualCamera.m_Lens.OrthographicSize);
+
+       objBlueFlash.SetActive(false);
     }
 
     private void Update()
@@ -85,7 +94,7 @@ public class OutroScene : MonoBehaviour
             StartCoroutine(cameraZoom());
         }
 
-        pcName.text = "Playable Character";
+        pcName.text = "Miks";
 
         mayaName.text = "Maya";
 
@@ -217,6 +226,11 @@ public class OutroScene : MonoBehaviour
             mayaSentence.text = mayaString8;
         }
 
+        if (sentenceNumber == 15)
+        {
+            StartCoroutine(blueFlash());
+        }
+
         #endregion
     }
 
@@ -227,8 +241,6 @@ public class OutroScene : MonoBehaviour
 
     public IEnumerator cameraZoom()
     {
-        yield return new WaitForSeconds(2f);
-
         // Check if the zooming duration has not been completed yet
         if (elapsedTime < zoomDuration)
         {
@@ -244,6 +256,32 @@ public class OutroScene : MonoBehaviour
 
         sentenceNumber = 1;
         btnNextText.SetActive(true);
+    }
+
+    public IEnumerator blueFlash()
+    {
+        objBlueFlash.SetActive(true);
+        imgBlueFlash.color = new Color(0, 255, 255, 0);
+
+        yield return new WaitForSeconds(0.2f);
+
+        imgBlueFlash.color = new Color(0, 255, 255, 50);
+
+        yield return new WaitForSeconds(0.2f);
+
+        imgBlueFlash.color = new Color(0, 255, 255, 100);
+
+        yield return new WaitForSeconds(0.2f);
+
+        imgBlueFlash.color = new Color(0, 255, 255, 150);
+
+        yield return new WaitForSeconds(0.2f);
+
+        imgBlueFlash.color = new Color(0, 255, 255, 200);
+
+        yield return new WaitForSeconds(0.2f);
+
+        SceneManager.LoadScene("CreditsScene");
     }
 
     //public IEnumerator startScene()

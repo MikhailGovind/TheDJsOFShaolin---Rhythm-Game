@@ -181,7 +181,7 @@ public class BackToSchoolJam : MonoBehaviour
             StartCoroutine(startScene());
         }
 
-        pcName.text = "Playable Character";
+        pcName.text = "Miks";
 
         zayName.text = "Zay";
 
