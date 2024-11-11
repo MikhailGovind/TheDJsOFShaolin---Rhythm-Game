@@ -263,23 +263,23 @@ public class OutroScene : MonoBehaviour
         objBlueFlash.SetActive(true);
         imgBlueFlash.color = new Color(0, 255, 255, 0);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         imgBlueFlash.color = new Color(0, 255, 255, 50);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         imgBlueFlash.color = new Color(0, 255, 255, 100);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         imgBlueFlash.color = new Color(0, 255, 255, 150);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         imgBlueFlash.color = new Color(0, 255, 255, 200);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene("CreditsScene");
     }

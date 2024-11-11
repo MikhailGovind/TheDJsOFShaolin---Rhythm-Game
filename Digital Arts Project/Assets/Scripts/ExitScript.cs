@@ -23,4 +23,9 @@ public class ExitScript : MonoBehaviour
             Application.Quit();
         }    
     }
+
+    public void toIntro()
+    {
+        SceneManager.LoadScene("InitialScene");
+    }
 }

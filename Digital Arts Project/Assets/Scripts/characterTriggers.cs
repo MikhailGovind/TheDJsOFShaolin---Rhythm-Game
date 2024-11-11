@@ -8,34 +8,14 @@ public class characterTriggers : MonoBehaviour
     public BackToSchoolJam backToSchoolJam;
 
     [Header("Maya")]
-    public GameObject objMayaTrigger;
     public bool boolMayaTrigger;
 
     [Header("Devon")]
-    public GameObject objDevonTrigger;
     public bool boolDevonTrigger;
 
     [Header("Coke La Rock")]
-    public GameObject objCokeTrigger;
     public bool boolCokeTrigger;
 
-    private void Update()
-    {
-        if (backToSchoolJam.sentenceNumber == 11)
-        {
-            objMayaTrigger.SetActive(true);
-        }
-
-        if (backToSchoolJam.sentenceNumber == 24)
-        {
-            objDevonTrigger.SetActive(true);
-        }
-
-        if (backToSchoolJam.sentenceNumber == 33)
-        {
-            objCokeTrigger.SetActive(true);
-        }
-    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,7 +24,7 @@ public class characterTriggers : MonoBehaviour
             if (other.tag == "Player")
             {
                 backToSchoolJam.sentenceNumber = 12;
-                objMayaTrigger.SetActive(false);
+                backToSchoolJam.objMayaTrigger.SetActive(false);
             }
         }
 
@@ -53,7 +33,7 @@ public class characterTriggers : MonoBehaviour
             if (other.tag == "Player")
             {
                 backToSchoolJam.sentenceNumber = 25;
-                objDevonTrigger.SetActive(false);
+                backToSchoolJam.objDevonTrigger.SetActive(false);
             }
         }
 
@@ -62,7 +42,7 @@ public class characterTriggers : MonoBehaviour
             if(other.tag == "Player")
             {
                 backToSchoolJam.sentenceNumber = 34;
-                objCokeTrigger.SetActive(false);
+                backToSchoolJam.objCokeTrigger.SetActive(false);
             }
         }
     }

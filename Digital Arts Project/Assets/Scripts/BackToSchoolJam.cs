@@ -153,6 +153,11 @@ public class BackToSchoolJam : MonoBehaviour
     [TextArea(3, 10)]
     public string cokeString4;
 
+    [Header("Triggers")]
+    public GameObject objMayaTrigger;
+    public GameObject objDevonTrigger;
+    public GameObject objCokeTrigger;
+
     #endregion
 
     public void Start()
@@ -170,6 +175,10 @@ public class BackToSchoolJam : MonoBehaviour
         btnNextText.SetActive(false);
 
         currentQuest.SetActive(false);
+
+        objMayaTrigger.SetActive(false);
+        objDevonTrigger.SetActive(false);
+        objCokeTrigger.SetActive(false);
     }
 
     private void Update()
@@ -181,6 +190,8 @@ public class BackToSchoolJam : MonoBehaviour
             StartCoroutine(startScene());
         }
 
+
+        
         pcName.text = "Miks";
 
         zayName.text = "Zay";
@@ -325,6 +336,8 @@ public class BackToSchoolJam : MonoBehaviour
             currentQuest.SetActive(true);
 
             player.moveSpeed = 5f;
+
+            objMayaTrigger.SetActive(true);
         }
 
         //pc interacts with maya
@@ -481,6 +494,8 @@ public class BackToSchoolJam : MonoBehaviour
             currentQuest.SetActive(true);
 
             player.moveSpeed = 5f;
+
+            objDevonTrigger.SetActive(true);
         }
 
         //zay option
@@ -603,6 +618,8 @@ public class BackToSchoolJam : MonoBehaviour
             txtQuest.text = currentQuestString3;
 
             player.moveSpeed = 5f;
+
+            objCokeTrigger.SetActive(true);
         }
 
         if (sentenceNumber == 34) //devon 4

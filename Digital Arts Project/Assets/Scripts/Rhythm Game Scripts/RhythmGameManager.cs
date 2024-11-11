@@ -286,11 +286,11 @@ public class RhythmGameManager : MonoBehaviour
             txtTotalScore.text = totalScore.ToString("F0");
         }
 
-        if (Input.GetKeyDown(resultKeyCode))
-        {
-            gameState3 = true;
-            gameState2 = false;
-        }
+        //if (Input.GetKeyDown(resultKeyCode))
+        //{
+        //    gameState3 = true;
+        //    gameState2 = false;
+        //}
 
         #endregion
 
@@ -388,7 +388,7 @@ public class RhythmGameManager : MonoBehaviour
         crossfaderValue = sldrCrossfader.value;
         crossfaderGuideValue = sldrCrossfaderGuide.value;
 
-        crossfaderRandomNumber = UnityEngine.Random.Range(0, 5000);
+        crossfaderRandomNumber = UnityEngine.Random.Range(0, 1500);
         crossfaderRandomChecker = UnityEngine.Random.Range(0, 10);
         crossfaderRandomLean = UnityEngine.Random.Range(0, 10);
 
@@ -569,11 +569,6 @@ public class RhythmGameManager : MonoBehaviour
             {
                 StartCoroutine(matchingBPMS());
             }
-
-            //if (left_songNumber == right_songNumber)
-            //{
-            //    StartCoroutine(matchingBPMS());
-            //}
         }
 
         #endregion
@@ -641,7 +636,7 @@ public class RhythmGameManager : MonoBehaviour
             }
         }
 
-        scratchRandomizer1 = UnityEngine.Random.Range(0, 10000);
+        scratchRandomizer1 = UnityEngine.Random.Range(0, 2000);
         scratchRandomizer2 = UnityEngine.Random.Range(0, 10);
 
         if (scratchRandomizer1 == scratchRandomizer2)
