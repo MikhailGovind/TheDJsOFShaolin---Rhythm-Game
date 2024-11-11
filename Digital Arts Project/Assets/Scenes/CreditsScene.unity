@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2937.0818}
+  m_AnchoredPosition: {x: 0, y: -2510}
   m_SizeDelta: {x: 1920, y: 4720.1636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615562
@@ -229,7 +229,12 @@ MonoBehaviour:
     MULLING ABOUT BETWEEN RACES - CANUKFA - https://freesound.org/people/Canukfa/sounds/143305/
 
     A
-    HIP HOP CLASSIC T LA ROCK IT''S YOURS - https://www.youtube.com/watch?v=nWkiIb6G9_8'
+    HIP HOP CLASSIC T LA ROCK IT''S YOURS - https://www.youtube.com/watch?v=nWkiIb6G9_8
+
+    RHYTHM
+    GAME INITIAL INSPIRATION AND FOUNDATIONAL CODE - gamesplusjames - https://youtu.be/cZzf1FQQFA0?si=XcMoulVcCqulgkzG
+
+'
 --- !u!222 &615563
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -289,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.27058825, g: 0.34117648, b: 0.40392157, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
