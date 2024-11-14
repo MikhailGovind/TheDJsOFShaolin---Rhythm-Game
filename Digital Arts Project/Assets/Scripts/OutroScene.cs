@@ -283,12 +283,4 @@ public class OutroScene : MonoBehaviour
 
         SceneManager.LoadScene("CreditsScene");
     }
-
-    //public IEnumerator startScene()
-    //{
-    //    yield return new WaitForSeconds(1.5f);
-
-    //    sentenceNumber = 1;
-    //    btnNextText.SetActive(true);
-    //}
 }
